@@ -1,15 +1,15 @@
-package projetopgm.com.br.projetopgm.abertura;
+package projetopgm.com.br.projetopgm.acompanhamento;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import projetopgm.com.br.projetopgm.R;
 
-public class Abertura_Servico_Activity extends AppCompatActivity {
+public class AcompanhamentoServicoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_abertura_servico);
+        setContentView(R.layout.activity_acompanhamento_servico);
     }
 }

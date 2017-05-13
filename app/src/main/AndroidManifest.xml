@@ -19,7 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".abertura.Abertura_Servico_Activity"></activity>
+        <activity android:name=".abertura.AberturaServicoAcivity" />
+        <activity android:name=".acompanhamento.AcompanhamentoServicoActivity"></activity>
     </application>
 
 </manifest>
