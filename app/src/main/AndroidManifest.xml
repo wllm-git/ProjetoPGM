@@ -19,10 +19,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".detalhes.detalhes" />
-        <activity android:name=".listagem.listagem" />
-        <activity android:name=".detalhes.detalhesActivity" />
-        <activity android:name=".listagem.listagemActivity"></activity>
     </application>
 
 </manifest>
