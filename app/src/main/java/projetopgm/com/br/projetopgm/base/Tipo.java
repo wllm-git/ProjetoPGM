@@ -1,6 +1,6 @@
 package projetopgm.com.br.projetopgm.base;
 
-public enum TIPO {
+public enum Tipo {
 
 	ORCAMENTO,
 	OS
