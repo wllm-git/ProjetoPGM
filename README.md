@@ -1,6 +1,6 @@
 # ProjetoPGM
 
-Aplicação referente ao projeto de conclusão da disciplina Programaçao Mobile.
+Aplicação, desenvolvida na plataforma Android, referente ao projeto de conclusão da disciplina Programaçao Mobile.
 
 Faculdade Unibratec - 2017.1
 
@@ -8,3 +8,6 @@ Faculdade Unibratec - 2017.1
 Daniel Rodrigues
 Roldão Wilker
 William Geison
+
+<b>Professor/Orientador:</b>
+Thiago Soara
