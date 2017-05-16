@@ -26,8 +26,8 @@ public class Servico {
 	private Double desconto;
 	
 
-	private TIPO tipo;
-	private STATUS status;
+	private Tipo tipo;
+	private Status status;
 
 	private Cliente cliente;
 	
@@ -58,10 +58,10 @@ public class Servico {
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}
-	public TIPO getTipo() {
+	public Tipo getTipo() {
 		return tipo;
 	}
-	public void setTipo(TIPO tipo) {
+	public void setTipo(Tipo tipo) {
 		this.tipo = tipo;
 	}
 	public String getDescricao() {
@@ -94,10 +94,10 @@ public class Servico {
 	public void setDesconto(Double desconto) {
 		this.desconto = desconto;
 	}
-	public STATUS getStatus() {
+	public Status getStatus() {
 		return status;
 	}
-	public void setStatus(STATUS status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 	public Date getDataAvaliacao() {
