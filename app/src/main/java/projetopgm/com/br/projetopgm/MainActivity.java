@@ -21,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.mipmap.ic_launcher_round);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabNovo);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

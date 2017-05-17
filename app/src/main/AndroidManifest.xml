@@ -19,11 +19,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".localizacao.MapsActivity" />
-        <activity android:name=".abertura.AberturaServicoAcivity" />
-        <activity android:name=".acompanhamento.AcompanhamentoServicoActivity" />
-        <activity android:name=".listagem.ListagemActivity" />
-        <activity android:name=".detalhes.DetalhesActivity" />
+        <activity android:name=".localizacao.MapsActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".abertura.AberturaServicoAcivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".acompanhamento.AcompanhamentoServicoActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".listagem.ListagemActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".detalhes.DetalhesActivity" android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
