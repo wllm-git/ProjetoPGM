@@ -1,5 +1,6 @@
 package projetopgm.com.br.projetopgm;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,6 +9,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import projetopgm.com.br.projetopgm.listagem.ListagemActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,7 +41,11 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_listagem) {
+            Intent it = new Intent(this, ListagemActivity.class);
+            startActivity(it);
+            return true;
+        }else if(id == R.id.action_localizacao){
 
             return true;
         }

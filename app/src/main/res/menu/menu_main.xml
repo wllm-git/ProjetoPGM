@@ -3,9 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="projetopgm.com.br.projetopgm.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_listagem"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="@string/action_listagem"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/action_localizacao"
+        android:orderInCategory="100"
+        android:title="@string/action_localizacao"
+        app:showAsAction="never" />
 </menu>
