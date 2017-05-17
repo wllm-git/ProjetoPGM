@@ -19,8 +19,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".localizacao.MapsActivity" />
         <activity android:name=".abertura.AberturaServicoAcivity" />
-        <activity android:name=".acompanhamento.AcompanhamentoServicoActivity"></activity>
+        <activity android:name=".acompanhamento.AcompanhamentoServicoActivity" />
+        <activity android:name=".listagem.ListagemActivity" />
+        <activity android:name=".detalhes.DetalhesActivity" />
     </application>
 
 </manifest>
