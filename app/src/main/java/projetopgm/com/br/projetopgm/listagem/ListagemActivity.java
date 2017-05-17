@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import projetopgm.com.br.projetopgm.R;
 
-public class listagemActivity extends AppCompatActivity {
+public class ListagemActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

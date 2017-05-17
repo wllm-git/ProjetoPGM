@@ -36,9 +36,5 @@ public class Foto {
 	public void setServico(Servico servico) {
 		this.servico = servico;
 	}
-	
-	
-	
-	
 
 }

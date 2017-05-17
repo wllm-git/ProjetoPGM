@@ -5,8 +5,6 @@ import java.util.List;
 
 
 public class Cliente {
-	
-	
 
 	private Integer id;
 	private String nome;

@@ -6,11 +6,21 @@ import java.util.List;
 
 
 public class Servico {
-	
+
+	public enum Status {
+		ABERTO,
+		ANDAMENTO,
+		FECHADO,
+		CANCELADO
+	}
+
+	public enum Tipo {
+		ORCAMENTO,
+		OS
+	}
 
 	private Integer Id;
-	
-	
+
 	private List<Foto> fotos;
 	
 	private Date dataAbertura;
@@ -24,14 +34,13 @@ public class Servico {
 	private Double precoFinal;
 	private Double acrescimo;
 	private Double desconto;
-	
 
 	private Tipo tipo;
 	private Status status;
 
 	private Cliente cliente;
-	
-	
+
+
 	/*GETTERS AND SETTERS*/
 	
 	public Integer getId() {
@@ -118,7 +127,6 @@ public class Servico {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-	
-	
-	
+
+
 }
