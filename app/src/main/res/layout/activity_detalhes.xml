@@ -20,4 +20,11 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <fragment
+        android:id="@+id/fragmentDetalhes"
+        android:name="projetopgm.com.br.projetopgm.detalhes.fragmentDetalhes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout="@layout/fragment_detalhes" />
+
 </RelativeLayout>
