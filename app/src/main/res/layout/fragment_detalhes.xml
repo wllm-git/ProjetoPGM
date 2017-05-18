@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:src="@mipmap/ic_car_36dp"
+        android:id="@+id/imgIconeDetalhes"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        />
+
+    <TextView
+        android:text="DESCRICAO ITEM"
+        android:textSize="@dimen/font_size_item_desc"
+        android:id="@+id/tvwDescDetalhes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imgIconeDetalhes"
+        android:layout_toEndOf="@+id/imgIconeDetalhes"
+        android:layout_marginStart="29dp"
+        android:layout_marginBottom="31dp" />
+    <TextView
+        android:text="DATA ABERTA"
+        android:id="@+id/tvwDataAberta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="46dp"
+        android:layout_below="@+id/imgIconeDetalhes"
+        android:layout_alignStart="@+id/tvwValor" />
+
+    <TextView
+        android:text="DATA FECHADA"
+        android:id="@+id/tvwDataFechada"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:layout_below="@+id/tvwDataAberta"
+        android:layout_centerHorizontal="true" />
+    <TextView
+        android:text="VALOR"
+        android:id="@+id/tvwValor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="34dp"
+        android:layout_below="@+id/tvwDataFechada"
+        android:layout_alignStart="@+id/tvwDataFechada" />
+
+
+
+</RelativeLayout>
