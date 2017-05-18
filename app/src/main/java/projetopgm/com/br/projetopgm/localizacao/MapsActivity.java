@@ -15,6 +15,7 @@ import projetopgm.com.br.projetopgm.R;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private LocalizacaoHelper localizacaoHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,5 +35,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(oficina).title("Oficina"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(oficina, 14.5f));
 
+        localizacaoHelper = new LocalizacaoHelper(this, mMap);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(localizacaoHelper != null)
+            localizacaoHelper.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        if(localizacaoHelper != null)
+            localizacaoHelper.onStop();
+        super.onStop();
     }
 }
