@@ -2,18 +2,30 @@ package projetopgm.com.br.projetopgm;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
+
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import projetopgm.com.br.projetopgm.abertura.AberturaServicoAcivity;
 import projetopgm.com.br.projetopgm.listagem.ListagemActivity;
 import projetopgm.com.br.projetopgm.localizacao.MapsActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+        implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener{
+    private static final int RC_SIGN_IN = 1;
+    private GoogleApiClient mGoogleApiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,13 +38,18 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.mipmap.ic_launcher_round);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabNovo);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent it = new Intent(MainActivity.this, AberturaServicoAcivity.class);
-                startActivity(it);
-            }
-        });
+        fab.setOnClickListener(this);
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
+
+        signIn();
     }
 
     @Override
@@ -57,4 +74,87 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent it = new Intent(this, AberturaServicoAcivity.class);
+        startActivity(it);
+    }
+
+    private void signIn() {
+        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == RC_SIGN_IN) {
+            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            handleSignInResult(result);
+        }
+    }
+
+    private void handleSignInResult(GoogleSignInResult result) {
+        if (result.isSuccess()) {
+            GoogleSignInAccount acct = result.getSignInAccount();
+            Toast.makeText(this, acct.getDisplayName() +" "+ acct.getEmail(), Toast.LENGTH_LONG).show();
+            //new Teste().execute(acct);
+        } else {
+            Toast.makeText(this, "Teste " + result.isSuccess(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+/* TODO google People API para consultar a idade do cliente para não permitir menores de idade.
+    private static HttpTransport HTTP_TRANSPORT = AndroidHttp.newCompatibleTransport();
+    private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
+    private static final String APPLICATION_NAME = "Projeto PGM";
+    private class Teste extends AsyncTask<GoogleSignInAccount, Void, Person>{
+
+        @Override
+        protected Person doInBackground(GoogleSignInAccount... params) {
+
+            GoogleSignInAccount googleSignInAccount = params[0];
+            Collection<String> collection = new ArrayList();
+            collection.add(Scopes.PROFILE);
+
+            GoogleAccountCredential credential =
+                    GoogleAccountCredential.usingOAuth2(MainActivity.this, collection);
+            credential.setSelectedAccount(googleSignInAccount.getAccount());
+                    //new Account(googleSignInAccount.getEmail() , "com.google"));
+            People service = new People.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential)
+                    .setApplicationName(APPLICATION_NAME)
+                    .build();
+
+            try{
+                Person meProfile = service.people().get("people/me")
+                        .setRequestMaskIncludeField("person.addresses")
+                        .setRequestMaskIncludeField("person.birthdays")
+                        .setRequestMaskIncludeField("person.genders")
+                        .execute();
+                // e.g. Gender
+
+                return meProfile;
+            }catch (IOException ex){
+                ex.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Person aPerson) {
+            if(aPerson != null)
+                Toast.makeText(MainActivity.this, aPerson.getAddresses().get(0).getStreetAddress(), Toast.LENGTH_LONG).show();
+            else
+                Toast.makeText(MainActivity.this, "Teste erro", Toast.LENGTH_SHORT).show();
+        }
+    }
+    */
 }
