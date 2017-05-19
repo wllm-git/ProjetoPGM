@@ -30,7 +30,7 @@
         android:id="@+id/fabNovo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_input_add"
+        app:srcCompat="@mipmap/add_launcher_rounds"
         android:layout_marginLeft="@dimen/fab_margin"
         android:layout_marginRight="@dimen/fab_margin"
         android:layout_marginBottom="@dimen/fab_margin"

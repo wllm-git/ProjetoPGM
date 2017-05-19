@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:src="@mipmap/ic_car_36dp"
+        android:src="@mipmap/carro_launcher"
         android:id="@+id/imgIconeDetalhes"
         android:layout_width="100dp"
         android:layout_height="100dp"
