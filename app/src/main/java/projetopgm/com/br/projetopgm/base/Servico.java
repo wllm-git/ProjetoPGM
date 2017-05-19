@@ -1,11 +1,12 @@
 package projetopgm.com.br.projetopgm.base;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 
 
-public class Servico {
+public class Servico implements Serializable{
 
 	public enum Status {
 		ABERTO,
