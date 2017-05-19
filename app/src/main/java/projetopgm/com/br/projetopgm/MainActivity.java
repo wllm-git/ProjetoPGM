@@ -11,6 +11,7 @@ import android.view.View;
 
 import projetopgm.com.br.projetopgm.abertura.AberturaServicoAcivity;
 import projetopgm.com.br.projetopgm.listagem.ListagemActivity;
+import projetopgm.com.br.projetopgm.localizacao.MapsActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -49,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
             startActivity(it);
             return true;
         }else if(id == R.id.action_localizacao){
-
+            Intent it = new Intent(this, MapsActivity.class);
+            startActivity(it);
             return true;
         }
 
