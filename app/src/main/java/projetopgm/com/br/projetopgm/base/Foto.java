@@ -1,28 +1,18 @@
 package projetopgm.com.br.projetopgm.base;
 
 
-public class Foto {
-	
+import java.io.Serializable;
 
-	private Integer id;
-	
+public class Foto implements Serializable{
+	private Long id;
 	private byte[] arquivo;
 	private String nome;
 
-	private Servico servico;
-	
-	
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
-	}
-	public byte[] getArquivo() {
-		return arquivo;
-	}
-	public void setArquivo(byte[] arquivo) {
-		this.arquivo = arquivo;
 	}
 	public String getName() {
 		return nome;
@@ -30,11 +20,10 @@ public class Foto {
 	public void setName(String nome) {
 		this.nome = nome;
 	}
-	public Servico getServico() {
-		return servico;
+	public byte[] getArquivo() {
+		return arquivo;
 	}
-	public void setServico(Servico servico) {
-		this.servico = servico;
+	public void setArquivo(byte[] arquivo) {
+		this.arquivo = arquivo;
 	}
-
 }

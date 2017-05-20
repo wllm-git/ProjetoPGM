@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 
 
-
 public class Servico implements Serializable{
 
 	public enum Status {
@@ -20,7 +19,7 @@ public class Servico implements Serializable{
 		OS
 	}
 
-	private Integer Id;
+	private Long id;
 
 	private List<Foto> fotos;
 	
@@ -44,11 +43,11 @@ public class Servico implements Serializable{
 
 	/*GETTERS AND SETTERS*/
 	
-	public Integer getId() {
-		return Id;
+	public Long getId() {
+		return id;
 	}
-	public void setId(Integer id) {
-		Id = id;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public List<Foto> getFotos() {
 		return fotos;
@@ -62,6 +61,10 @@ public class Servico implements Serializable{
 	public void setDataAbertura(Date dataAbertura) {
 		this.dataAbertura = dataAbertura;
 	}
+	public void setDataAbertura(Long dataAbertura) {
+        if(dataAbertura != null)
+		    this.dataAbertura = new Date(dataAbertura);
+	}
 	public String getNumero() {
 		return numero;
 	}
@@ -73,6 +76,12 @@ public class Servico implements Serializable{
 	}
 	public void setTipo(Tipo tipo) {
 		this.tipo = tipo;
+	}
+	public void setTipo(String tipo) {
+		if(Tipo.OS.toString().equalsIgnoreCase(tipo))
+			this.tipo = Tipo.OS;
+		else
+			this.tipo = Tipo.ORCAMENTO;
 	}
 	public String getDescricao() {
 		return descricao;
@@ -110,17 +119,35 @@ public class Servico implements Serializable{
 	public void setStatus(Status status) {
 		this.status = status;
 	}
+	public void setStatus(String status) {
+		if(Status.ANDAMENTO.toString().equalsIgnoreCase(status))
+			this.status = Status.ANDAMENTO;
+		if(Status.FECHADO.toString().equalsIgnoreCase(status))
+			this.status = Status.FECHADO;
+		if(Status.CANCELADO.toString().equalsIgnoreCase(status))
+			this.status = Status.CANCELADO;
+		else
+			this.status = Status.ABERTO;
+	}
 	public Date getDataAvaliacao() {
 		return dataAvaliacao;
 	}
 	public void setDataAvaliacao(Date dataAvaliacao) {
 		this.dataAvaliacao = dataAvaliacao;
 	}
+	public void setDataAvaliacao(Long dataAvaliacao) {
+        if(dataAvaliacao != null)
+		    this.dataAvaliacao = new Date(dataAvaliacao);
+	}
 	public Date getDataFechamento() {
 		return dataFechamento;
 	}
 	public void setDataFechamento(Date dataFechamento) {
 		this.dataFechamento = dataFechamento;
+	}
+	public void setDataFechamento(Long dataFechamento) {
+        if(dataFechamento != null)
+		    this.dataFechamento = new Date(dataFechamento);
 	}
 	public Cliente getCliente() {
 		return cliente;
