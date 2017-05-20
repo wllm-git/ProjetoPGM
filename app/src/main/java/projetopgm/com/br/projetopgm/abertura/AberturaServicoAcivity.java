@@ -59,8 +59,8 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
     @Override
     public void onClick(View v) {
 
-        if(totalFotos > 6){
-            Toast.makeText(this,"Número máximo de fotos atingido, exclua uma foto.",Toast.LENGTH_LONG).show();
+        if((linha1Size+linha2Size) == 6){
+            Toast.makeText(this,"Número máximo de fotos atingido, apague uma foto para continuar",Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -108,7 +108,7 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
 
             if ( bmap.sameAs(mylogo)) {
                 temp.setId(imagemid);
-                temp.setImageBitmap(imagem);
+                temp.setImageBitmap(Bitmap.createScaledBitmap(imagem,160,110,true));
                 return;
             }
         }
