@@ -18,7 +18,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.util.Date;
+
 import projetopgm.com.br.projetopgm.abertura.AberturaServicoAcivity;
+import projetopgm.com.br.projetopgm.bancodados.ServicoDAO;
+import projetopgm.com.br.projetopgm.base.Servico;
 import projetopgm.com.br.projetopgm.listagem.ListagemActivity;
 import projetopgm.com.br.projetopgm.localizacao.MapsActivity;
 
@@ -50,6 +54,26 @@ public class MainActivity extends AppCompatActivity
                 .build();
 
         signIn();
+
+        //TESTANDO 1,2,3.
+        /*ServicoDAO servicoDAO = new ServicoDAO(this);
+        Servico servico = new Servico();
+        servico.setDataAbertura(new Date());
+        servico.setNumero("Y35");
+        servico.setDescricao("FECHADA");
+        servico.setTipo(Servico.Tipo.ORCAMENTO);
+        servico.setStatus(Servico.Status.FECHADO);
+        servicoDAO.salvar(servico);
+
+
+        servico.setDataAbertura(new Date());
+        servico.setNumero("F78");
+        servico.setDescricao("FECHADA24");
+        servico.setTipo(Servico.Tipo.ORCAMENTO);
+        servico.setStatus(Servico.Status.FECHADO);
+        servico.setId(null);
+        servicoDAO.salvar(servico);*/
+
     }
 
     @Override

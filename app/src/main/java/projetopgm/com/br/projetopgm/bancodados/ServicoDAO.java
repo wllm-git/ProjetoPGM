@@ -65,7 +65,7 @@ public class ServicoDAO extends BancoDados{
         return linhas;
     }
 
-    public List<Servico> buscarTodos(){
+    public ArrayList<Servico> buscarTodos(){
         SQLiteDatabase db = getReadableDatabase();
 
         ArrayList<Servico> servicos = new ArrayList<>();
@@ -99,6 +99,39 @@ public class ServicoDAO extends BancoDados{
         return servicos;
     }
 
+    public ArrayList<Servico> buscarFechadas(){
+        SQLiteDatabase db = getReadableDatabase();
+
+        ArrayList<Servico> servicos = new ArrayList<>();
+
+        String sql = "select * from " + Tabela.NOME_TABELA + " where "+ Tabela.CAMPO_STATUS + " = ? order by " + Tabela.CAMPO_ID;
+
+        Cursor cursor = db.rawQuery(sql, new String[]{Servico.Status.FECHADO.toString()});
+
+        while (cursor.moveToNext()){
+            Servico s = new Servico();
+
+            s.setId(cursor.getLong(cursor.getColumnIndex(Tabela.CAMPO_ID)));
+            s.setDataAbertura(cursor.getLong(cursor.getColumnIndex(Tabela.CAMPO_DATAABERTURA)));
+            s.setDataAvaliacao(cursor.getLong(cursor.getColumnIndex(Tabela.CAMPO_DATAAVALIACAO)));
+            s.setDataFechamento(cursor.getLong(cursor.getColumnIndex(Tabela.CAMPO_DATAFECHAMENTO)));
+            s.setNumero(cursor.getString(cursor.getColumnIndex(Tabela.CAMPO_NUMERO)));
+            s.setDescricao(cursor.getString(cursor.getColumnIndex(Tabela.CAMPO_DESCRICAO)));
+            s.setPrecoAvaliado(cursor.getDouble(cursor.getColumnIndex(Tabela.CAMPO_PRECOAVALIADO)));
+            s.setPrecoFinal(cursor.getDouble(cursor.getColumnIndex(Tabela.CAMPO_PRECOFINAL)));
+            s.setAcrescimo(cursor.getDouble(cursor.getColumnIndex(Tabela.CAMPO_ACRESCIMO)));
+            s.setDesconto(cursor.getDouble(cursor.getColumnIndex(Tabela.CAMPO_DESCONTO)));
+            s.setTipo(cursor.getString(cursor.getColumnIndex(Tabela.CAMPO_TIPO)));
+            s.setStatus(cursor.getString(cursor.getColumnIndex(Tabela.CAMPO_STATUS)));
+
+            servicos.add(s);
+        }
+
+        cursor.close();
+        db.close();
+
+        return servicos;
+    }
     public class Tabela{
         public static final String NOME_TABELA = "Servico";
         public static final String CAMPO_ID = "_id";
