@@ -48,7 +48,7 @@
             android:layout_above="@+id/edtInfo">
 
             <LinearLayout
-                android:id="@+id/linear"
+                android:id="@+id/linha1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" >
@@ -67,7 +67,8 @@
                     android:layout_height="90dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="20dp"
-                    android:src="@drawable/celta_mini"/>
+                    android:src="@drawable/celta_mini"
+                    android:tag="ima"/>
 
                 <ImageView
                     android:id="@+id/imagem3"
@@ -75,12 +76,13 @@
                     android:layout_height="90dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="20dp"
-                    android:src="@drawable/celta_mini"/>
+                    android:src="@drawable/celta_mini"
+                    android:tag="ima"/>
 
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/linear2"
+                android:id="@+id/linha2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">

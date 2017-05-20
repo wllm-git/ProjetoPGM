@@ -2,6 +2,9 @@ package projetopgm.com.br.projetopgm.abertura;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.provider.MediaStore;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -20,8 +23,12 @@ import projetopgm.com.br.projetopgm.base.Servico;
 public class AberturaServicoAcivity extends AppCompatActivity implements View.OnClickListener{
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
-    LinearLayout linear;
+    LinearLayout linha1;
+    LinearLayout linha2;
     int imagemid;
+    int linha1Size = 0;
+    int linha2Size = 0;
+    int totalFotos = 0;
 
     public static final String EXTRA_SERVICO_ABERTURA = "abertura";
 
@@ -37,21 +44,8 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
 
         Button btnTakePicture = (Button) findViewById(R.id.btnTakePicture);
         btnTakePicture.setOnClickListener(this);
-        linear = (LinearLayout) findViewById(R.id.linear);
-
-
-        if(linear.getChildCount() == 0){
-            ImageView img = new ImageView(this);
-
-            img.setId(0);
-            img.setImageResource(R.drawable.celta_mini);
-
-            img.setPadding(5,5,5,5);
-
-            linear.addView(img);
-        }
-
-
+        linha1 = (LinearLayout) findViewById(R.id.linha1);
+        linha2 = (LinearLayout) findViewById(R.id.linha2);
 
     }
     private void takePictureIntent(){
@@ -64,11 +58,8 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
 
     @Override
     public void onClick(View v) {
-        if(linear.getChildAt(0).getId() == 0){
-            linear.removeView(linear.getChildAt(0));
-        }
 
-        if(linear.getChildCount() > 3){
+        if(totalFotos > 6){
             Toast.makeText(this,"Número máximo de fotos atingido, exclua uma foto.",Toast.LENGTH_LONG).show();
             return;
         }
@@ -85,19 +76,42 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
             Bundle extras = data.getExtras();
             Bitmap imageBitMap = (Bitmap) extras.get("data");
 
-            ImageView imagem = new ImageView(this);
-
-
-            imagem.setId(imagemid);
-
-            imagem.setPadding(10,10,10,10);
-            imagem.setImageBitmap(Bitmap.createScaledBitmap(imageBitMap,220,200,true));
-
-            linear.addView(imagem);
-
+            adicionarImagem(imageBitMap);
 
         }
 
+    }
+
+    private void adicionarImagem(Bitmap imagem){
+
+
+        if(linha1Size < 3){
+            percorrerLinha(linha1,imagem);
+            linha1Size++;
+        }
+
+        else if(linha2Size < 3){
+            percorrerLinha(linha2,imagem);
+            linha2Size++;
+            }
+
+    }
+
+    private void percorrerLinha(LinearLayout linha, Bitmap imagem) {
+        for (int x = 0; x < linha.getChildCount(); x++) {
+
+            ImageView temp = (ImageView) linha.getChildAt(x);
+            Bitmap bmap = ((BitmapDrawable)temp.getDrawable()).getBitmap();
+            Drawable myDrawable = getResources().getDrawable(R.drawable.celta_mini);
+            Bitmap mylogo = ((BitmapDrawable)myDrawable).getBitmap();
+
+
+            if ( bmap.sameAs(mylogo)) {
+                temp.setId(imagemid);
+                temp.setImageBitmap(imagem);
+                return;
+            }
+        }
     }
 }
 

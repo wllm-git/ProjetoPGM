@@ -73,7 +73,7 @@
         android:layout_marginRight="10dp"
         android:id="@+id/linearLayout">
     <LinearLayout
-        android:id="@+id/linear"
+        android:id="@+id/linha1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -108,7 +108,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linear2"
+        android:id="@+id/linha2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="12dp"
