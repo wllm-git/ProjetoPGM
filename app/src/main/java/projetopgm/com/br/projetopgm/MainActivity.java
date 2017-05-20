@@ -115,28 +115,32 @@ public class MainActivity extends AppCompatActivity
     private static HttpTransport HTTP_TRANSPORT = AndroidHttp.newCompatibleTransport();
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
     private static final String APPLICATION_NAME = "Projeto PGM";
-    private class Teste extends AsyncTask<GoogleSignInAccount, Void, Person>{
+    private class Teste extends AsyncTask<GoogleSignInAccount, Void, Person> {
 
         @Override
         protected Person doInBackground(GoogleSignInAccount... params) {
 
             GoogleSignInAccount googleSignInAccount = params[0];
+
             Collection<String> collection = new ArrayList();
             collection.add(Scopes.PROFILE);
+            collection.add(Scopes.PLUS_ME);
 
             GoogleAccountCredential credential =
-                    GoogleAccountCredential.usingOAuth2(MainActivity.this, collection);
+                    GoogleAccountCredential.usingOAuth2(MainActivity.this, Arrays.asList(s));
             credential.setSelectedAccount(googleSignInAccount.getAccount());
                     //new Account(googleSignInAccount.getEmail() , "com.google"));
             People service = new People.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential)
-                    .setApplicationName(APPLICATION_NAME)
+                    //.setApplicationName(APPLICATION_NAME)
                     .build();
 
             try{
+
+
                 Person meProfile = service.people().get("people/me")
-                        .setRequestMaskIncludeField("person.addresses")
+                        //.setRequestMaskIncludeField("person.addresses")
                         .setRequestMaskIncludeField("person.birthdays")
-                        .setRequestMaskIncludeField("person.genders")
+                        //.setRequestMaskIncludeField("person.genders")
                         .execute();
                 // e.g. Gender
 
@@ -156,5 +160,5 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(MainActivity.this, "Teste erro", Toast.LENGTH_SHORT).show();
         }
     }
-    */
+*/
 }
