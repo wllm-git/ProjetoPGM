@@ -4,10 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.provider.MediaStore;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -18,19 +15,18 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import projetopgm.com.br.projetopgm.R;
-import projetopgm.com.br.projetopgm.base.Servico;
 
 public class AberturaServicoAcivity extends AppCompatActivity implements View.OnClickListener{
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
-    LinearLayout linha1;
-    LinearLayout linha2;
-    int imagemid;
-    int linha1Size = 0;
-    int linha2Size = 0;
-    int totalFotos = 0;
+    static final int COLUMNS_NUMBER = 3;
 
-    public static final String EXTRA_SERVICO_ABERTURA = "abertura";
+    LinearLayout firstRow;
+    LinearLayout secondRow;
+    int imagemid;
+    int firstRowColumnNumber = 0;
+    int secondRowColumnNumber = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,22 +40,15 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
 
         Button btnTakePicture = (Button) findViewById(R.id.btnTakePicture);
         btnTakePicture.setOnClickListener(this);
-        linha1 = (LinearLayout) findViewById(R.id.linha1);
-        linha2 = (LinearLayout) findViewById(R.id.linha2);
+        firstRow = (LinearLayout) findViewById(R.id.linha1);
+        secondRow = (LinearLayout) findViewById(R.id.linha2);
 
     }
-    private void takePictureIntent(){
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if(takePictureIntent.resolveActivity(getPackageManager()) != null){
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-        }
-    }
-
 
     @Override
     public void onClick(View v) {
 
-        if((linha1Size+linha2Size) == 6){
+        if((firstRowColumnNumber + secondRowColumnNumber) == 6){
             Toast.makeText(this,"Número máximo de fotos atingido, apague uma foto para continuar",Toast.LENGTH_LONG).show();
             return;
         }
@@ -76,42 +65,54 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
             Bundle extras = data.getExtras();
             Bitmap imageBitMap = (Bitmap) extras.get("data");
 
-            adicionarImagem(imageBitMap);
+            addImage(imageBitMap);
 
         }
 
     }
 
-    private void adicionarImagem(Bitmap imagem){
+    private void takePictureIntent(){
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if(takePictureIntent.resolveActivity(getPackageManager()) != null){
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+    private void addImage(Bitmap imagem){
 
 
-        if(linha1Size < 3){
-            percorrerLinha(linha1,imagem);
-            linha1Size++;
+        if(firstRowColumnNumber < COLUMNS_NUMBER){
+            rowIterator(firstRow,imagem);
+            firstRowColumnNumber++;
         }
 
-        else if(linha2Size < 3){
-            percorrerLinha(linha2,imagem);
-            linha2Size++;
+        else if(secondRowColumnNumber < COLUMNS_NUMBER){
+            rowIterator(secondRow,imagem);
+            secondRowColumnNumber++;
             }
 
     }
 
-    private void percorrerLinha(LinearLayout linha, Bitmap imagem) {
-        for (int x = 0; x < linha.getChildCount(); x++) {
+    //Verify in which row the image will be added.
+    private void rowIterator(LinearLayout row, Bitmap image) {
+        for (int position = 0; position < row.getChildCount(); position++) {
 
-            ImageView temp = (ImageView) linha.getChildAt(x);
-            Bitmap bmap = ((BitmapDrawable)temp.getDrawable()).getBitmap();
-            Drawable myDrawable = getResources().getDrawable(R.drawable.celta_mini);
-            Bitmap mylogo = ((BitmapDrawable)myDrawable).getBitmap();
+            ImageView placeHolder = (ImageView) row.getChildAt(position);
+            Bitmap placeHolderBitmap = ((BitmapDrawable)placeHolder.getDrawable()).getBitmap();
+            Drawable myDrawable = getImagePlaceHolder();
+            Bitmap imagePlaceHolder = ((BitmapDrawable)myDrawable).getBitmap();
 
 
-            if ( bmap.sameAs(mylogo)) {
-                temp.setId(imagemid);
-                temp.setImageBitmap(Bitmap.createScaledBitmap(imagem,160,110,true));
+            if ( placeHolderBitmap.sameAs(imagePlaceHolder)) {
+                placeHolder.setId(imagemid);
+                placeHolder.setImageBitmap(Bitmap.createScaledBitmap(image,160,110,true));
                 return;
             }
         }
+    }
+    
+    private Drawable getImagePlaceHolder(){
+        return getResources().getDrawable(R.drawable.celta_mini);
     }
 }
 
