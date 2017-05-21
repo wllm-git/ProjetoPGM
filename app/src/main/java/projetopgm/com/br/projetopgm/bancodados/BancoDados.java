@@ -17,6 +17,7 @@ public class BancoDados extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
         ServicoDAO.createTable(db);
         ClienteDAO.createTable(db);
+        ServicoDAO.createTable(db);
     }
 
     @Override

@@ -17,7 +17,6 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
-import java.util.Date;
 
 import projetopgm.com.br.projetopgm.R;
 import projetopgm.com.br.projetopgm.base.Foto;
@@ -102,7 +101,7 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             imageBitMap.compress(Bitmap.CompressFormat.PNG,100,stream);
             foto.setArquivo(stream.toByteArray());
-            foto.setName("Foto0" + imagemid);
+            foto.setNome("Foto0" + imagemid);
 
             servico.getFotos().add(foto);
 
