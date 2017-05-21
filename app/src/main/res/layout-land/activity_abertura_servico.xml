@@ -64,7 +64,6 @@
 
     </LinearLayout>
 
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -72,42 +71,53 @@
         android:layout_marginTop="50dp"
         android:layout_marginRight="10dp"
         android:id="@+id/linearLayout">
-    <LinearLayout
-        android:id="@+id/linha1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_below="@+id/toolbar"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="42dp">
 
-        <ImageView
-            android:id="@+id/imagem1"
-            android:layout_width="100dp"
-            android:layout_height="80dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/celta_mini" />
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/imagem2"
-            android:layout_width="100dp"
-            android:layout_height="80dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/celta_mini" />
+            <LinearLayout
+            android:id="@+id/linha1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@+id/toolbar"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="42dp">
 
-        <ImageView
-            android:id="@+id/imagem3"
-            android:layout_width="100dp"
-            android:layout_height="80dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/celta_mini" />
+                <ImageView
+                    android:id="@+id/imagem1"
+                    android:layout_width="100dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/celta_mini" />
 
-    </LinearLayout>
+                <ImageView
+                    android:id="@+id/imagem2"
+                    android:layout_width="100dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/celta_mini" />
 
-    <LinearLayout
+                <ImageView
+                    android:id="@+id/imagem3"
+                    android:layout_width="100dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/celta_mini" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
         android:id="@+id/linha2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -141,6 +151,9 @@
 
 
         </LinearLayout>
+
+        </ScrollView>
+
     </LinearLayout>
 
     <TextView
