@@ -131,6 +131,7 @@ public class ServicoDAO extends BancoDados{
 
         return servicos;
     }
+
     public class Tabela{
         public static final String NOME_TABELA = "Servico";
         public static final String CAMPO_ID = "_id";
