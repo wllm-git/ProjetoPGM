@@ -10,23 +10,19 @@ import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 public class LocalizacaoHelper implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener{
 
     private Context context;
-    private GoogleMap mMap;
     private GoogleApiClient googleApiClient;
     private LatLng local;
 
-    public LocalizacaoHelper(Context context, GoogleMap mMap) {
+    public LocalizacaoHelper(Context context, GoogleApiClient.ConnectionCallbacks callback) {
         this.context = context;
-        this.mMap = mMap;
         googleApiClient = new GoogleApiClient.Builder(context)
+                .addConnectionCallbacks(callback)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API)
@@ -45,9 +41,7 @@ public class LocalizacaoHelper implements GoogleApiClient.ConnectionCallbacks,
     }
 
     @Override
-    public void onConnected(@Nullable Bundle bundle) {
-        obterLocalizacao();
-    }
+    public void onConnected(@Nullable Bundle bundle) { }
 
     @Override
     public void onConnectionSuspended(int i) {
@@ -59,21 +53,16 @@ public class LocalizacaoHelper implements GoogleApiClient.ConnectionCallbacks,
         Toast.makeText(context, connectionResult.getErrorCode() + " - " + connectionResult.getErrorMessage(), Toast.LENGTH_LONG);
     }
 
-    private void obterLocalizacao(){
+    public LatLng obterLocalizacao(){
         try{
             Location location = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
             if(location != null){
                 local = new LatLng(location.getLatitude(), location.getLongitude());
-                atualizarMap();
             }
 
         }catch (SecurityException ex){
             Toast.makeText(context, ex.getMessage(), Toast.LENGTH_LONG);
         }
-    }
-
-    private void atualizarMap(){
-        mMap.addMarker(new MarkerOptions().position(local));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(local, 14.5f));
+        return local;
     }
 }
