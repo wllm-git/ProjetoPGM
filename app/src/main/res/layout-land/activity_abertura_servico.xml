@@ -26,10 +26,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginBottom="21dp"
+        android:id="@+id/linearLayout2"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/linearLayout2">
+        android:layout_marginBottom="21dp">
 
         <EditText
             android:id="@+id/edtInfo"
@@ -38,17 +38,18 @@
             android:layout_above="@+id/btnTakePicture"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="72dp"
-            android:hint="Descrição do problema" />
+            android:hint="@string/hint_descricao_acticity_abertura" />
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <Button
                 android:id="@+id/btnTakePicture"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tirar Foto"
+                android:text="@string/btn_abertura_foto"
                 android:layout_marginBottom="35dp"
                 android:layout_alignParentBottom="true"
                 android:layout_alignStart="@+id/edtInfo" />
@@ -59,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignEnd="@+id/edtInfo"
                 android:layout_below="@+id/infoContainer"
-                android:text="Enviar" />
+                android:text="@string/btn_abertura_enviar" />
         </LinearLayout>
 
     </LinearLayout>
@@ -77,7 +78,7 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
-            android:id="@+id/linha1"
+            android:id="@+id/row1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -118,7 +119,7 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
-        android:id="@+id/linha2"
+        android:id="@+id/row2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="12dp"
@@ -160,7 +161,7 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ABERTURA DE SERVIÇO"
+        android:text="@string/title_activity_abertura"
         android:layout_marginStart="39dp"
         android:layout_above="@+id/linearLayout2"
         android:layout_alignStart="@+id/linearLayout2"

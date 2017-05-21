@@ -1,6 +1,7 @@
 package projetopgm.com.br.projetopgm.base;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -40,6 +41,9 @@ public class Servico implements Serializable{
 
 	private Cliente cliente;
 
+	public Servico() {
+		this.fotos = new ArrayList<>();
+	}
 
 	/*GETTERS AND SETTERS*/
 	

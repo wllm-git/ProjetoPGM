@@ -3,4 +3,8 @@
     <string name="action_listagem">Fechadas</string>
     <string name="action_localizacao">Localização</string>
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_abertura">ABERTURA DE SERVIÇO</string>
+    <string name="hint_descricao_acticity_abertura">Descrição do Problema</string>
+    <string name="btn_abertura_foto">Tirar Foto</string>
+    <string name="btn_abertura_enviar">Enviar</string>
 </resources>

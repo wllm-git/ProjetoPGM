@@ -30,7 +30,7 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ABERTURA DE SERVIÇO"
+            android:text="@string/title_activity_abertura"
             android:layout_marginTop="19dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
@@ -91,7 +91,7 @@
                 android:layout_height="wrap_content">
 
                 <LinearLayout
-                    android:id="@+id/linha2"
+                    android:id="@+id/row2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -142,9 +142,9 @@
             android:id="@+id/edtInfo"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:hint="Descrição do problema"
-            android:layout_marginTop="44dp"
-            android:layout_below="@+id/imagesContainer"
+            android:hint="@string/hint_descricao_acticity_abertura"
+            android:layout_marginBottom="39dp"
+            android:layout_above="@+id/infoContainer"
             android:layout_centerHorizontal="true" />
 
 
@@ -152,7 +152,7 @@
             android:id="@+id/btnTakePicture"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tirar Foto"
+            android:text="@string/btn_abertura_foto"
             android:layout_marginBottom="44dp"
             android:layout_alignParentBottom="true"
             android:layout_alignStart="@+id/edtInfo" />
@@ -163,7 +163,7 @@
             android:layout_height="wrap_content"
             android:layout_alignEnd="@+id/edtInfo"
             android:layout_below="@+id/infoContainer"
-            android:text="Enviar"/>
+            android:text="@string/btn_abertura_enviar"/>
 
 
     </RelativeLayout>
