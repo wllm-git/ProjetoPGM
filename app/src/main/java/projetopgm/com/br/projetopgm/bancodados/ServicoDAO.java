@@ -8,12 +8,16 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 
 import projetopgm.com.br.projetopgm.base.Cliente;
+import projetopgm.com.br.projetopgm.base.Foto;
 import projetopgm.com.br.projetopgm.base.Servico;
 
 public class ServicoDAO extends BancoDados{
 
+    private FotoDAO fotoDAO;
+
     public ServicoDAO(Context context) {
         super(context);
+        fotoDAO = new FotoDAO(context);
     }
 
     public void salvar(Servico servico){
@@ -21,6 +25,13 @@ public class ServicoDAO extends BancoDados{
             inserir(servico);
         else
             atualizar(servico);
+
+        if(servico.getFotos().size() > 0){
+            for (Foto foto : servico.getFotos()){
+                foto.setServico(servico);
+                fotoDAO.salvar(foto);
+            }
+        }
     }
 
     private long inserir(Servico servico){
@@ -98,6 +109,9 @@ public class ServicoDAO extends BancoDados{
         cursor.close();
         db.close();
 
+        for (int i = 0; i < servicos.size(); i++)
+            servicos.get(i).setFotos(fotoDAO.buscarPorServico(servicos.get(i)));
+
         return servicos;
     }
 
@@ -107,9 +121,11 @@ public class ServicoDAO extends BancoDados{
         ArrayList<Servico> servicos = new ArrayList<>();
 
         String sql = "select * from " + Tabela.NOME_TABELA + " where " + Tabela.CAMPO_CLIENTE_ID + " = ? AND "
-                + Tabela.CAMPO_STATUS + " = ? order by " + Tabela.CAMPO_ID;
+                + Tabela.CAMPO_STATUS + " in ( ?, ? ) order by " + Tabela.CAMPO_ID;
 
-        Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(cliente.getId()), Servico.Status.FECHADO.toString()});
+        Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(cliente.getId()),
+                Servico.Status.FECHADO.toString(),
+                Servico.Status.CANCELADO.toString()});
 
         while (cursor.moveToNext()){
             Servico s = new Servico();
@@ -134,7 +150,50 @@ public class ServicoDAO extends BancoDados{
         cursor.close();
         db.close();
 
+        for (int i = 0; i < servicos.size(); i++)
+            servicos.get(i).setFotos(fotoDAO.buscarPorServico(servicos.get(i)));
+
         return servicos;
+    }
+
+    public Servico buscarAberta(Cliente cliente){
+        SQLiteDatabase db = getReadableDatabase();
+
+        String sql = "select * from " + Tabela.NOME_TABELA + " where " + Tabela.CAMPO_CLIENTE_ID + " = ? AND "
+                + Tabela.CAMPO_STATUS + " in ( ?, ? ) order by " + Tabela.CAMPO_ID;
+
+        Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(cliente.getId()),
+                Servico.Status.ABERTO.toString(),
+                Servico.Status.ANDAMENTO.toString()});
+
+        Servico servico = null;
+
+        if (cursor.moveToNext()){
+            servico = new Servico();
+
+            servico.setId(cursor.getLong(cursor.getColumnIndex(Tabela.CAMPO_ID)));
+            servico.setDataAbertura(cursor.getLong(cursor.getColumnIndex(Tabela.CAMPO_DATAABERTURA)));
+            servico.setDataAvaliacao(cursor.getLong(cursor.getColumnIndex(Tabela.CAMPO_DATAAVALIACAO)));
+            servico.setDataFechamento(cursor.getLong(cursor.getColumnIndex(Tabela.CAMPO_DATAFECHAMENTO)));
+            servico.setNumero(cursor.getString(cursor.getColumnIndex(Tabela.CAMPO_NUMERO)));
+            servico.setDescricao(cursor.getString(cursor.getColumnIndex(Tabela.CAMPO_DESCRICAO)));
+            servico.setPrecoAvaliado(cursor.getDouble(cursor.getColumnIndex(Tabela.CAMPO_PRECOAVALIADO)));
+            servico.setPrecoFinal(cursor.getDouble(cursor.getColumnIndex(Tabela.CAMPO_PRECOFINAL)));
+            servico.setAcrescimo(cursor.getDouble(cursor.getColumnIndex(Tabela.CAMPO_ACRESCIMO)));
+            servico.setDesconto(cursor.getDouble(cursor.getColumnIndex(Tabela.CAMPO_DESCONTO)));
+            servico.setTipo(cursor.getString(cursor.getColumnIndex(Tabela.CAMPO_TIPO)));
+            servico.setStatus(cursor.getString(cursor.getColumnIndex(Tabela.CAMPO_STATUS)));
+            servico.setCliente(cliente);
+
+        }
+
+        cursor.close();
+        db.close();
+
+        if(servico != null)
+            servico.setFotos(fotoDAO.buscarPorServico(servico));
+
+        return servico;
     }
 
     public class Tabela{
