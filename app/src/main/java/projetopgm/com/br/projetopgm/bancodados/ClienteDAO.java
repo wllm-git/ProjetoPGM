@@ -15,6 +15,16 @@ public class ClienteDAO extends BancoDados{
         super(context);
     }
 
+    public static void createTable(SQLiteDatabase db){
+        String sql = "CREATE TABLE "+ Tabela.NOME_TABELA + " ( " +
+                Tabela.CAMPO_ID +" INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                Tabela.CAMPO_NOME + " TEXT NOT NULL, " +
+                Tabela.CAMPO_EMAIL + " TEXT NOT NULL, " +
+                Tabela.CAMPO_APLICATIVO_TOKEN + " TEXT, " +
+                "UNIQUE("+ Tabela.CAMPO_EMAIL + "));";
+        db.execSQL(sql);
+    }
+
     public void salvar(Cliente cliente){
         if(cliente.getId() == null || cliente.getId() <= 0)
             inserir(cliente);
@@ -28,6 +38,7 @@ public class ClienteDAO extends BancoDados{
         ContentValues valores = new ContentValues();
         valores.put(Tabela.CAMPO_NOME, cliente.getNome());
         valores.put(Tabela.CAMPO_EMAIL, cliente.getEmail());
+        valores.put(Tabela.CAMPO_APLICATIVO_TOKEN, cliente.getAplicativoToken());
 
         long id = db.insert(Tabela.NOME_TABELA, null, valores);
         if(id != -1)
@@ -44,6 +55,7 @@ public class ClienteDAO extends BancoDados{
         ContentValues valores = new ContentValues();
         valores.put(Tabela.CAMPO_NOME, cliente.getNome());
         valores.put(Tabela.CAMPO_EMAIL, cliente.getEmail());
+        valores.put(Tabela.CAMPO_APLICATIVO_TOKEN, cliente.getAplicativoToken());
 
         int linhas = db.update(Tabela.NOME_TABELA,
                 valores,
@@ -70,6 +82,7 @@ public class ClienteDAO extends BancoDados{
             c.setId(cursor.getLong(cursor.getColumnIndex(Tabela.CAMPO_ID)));
             c.setNome(cursor.getString(cursor.getColumnIndex(Tabela.CAMPO_NOME)));
             c.setEmail(cursor.getString(cursor.getColumnIndex(Tabela.CAMPO_EMAIL)));
+            c.setAplicativoToken(cursor.getString(cursor.getColumnIndex(Tabela.CAMPO_APLICATIVO_TOKEN)));
 
             clientes.add(c);
         }
@@ -94,6 +107,7 @@ public class ClienteDAO extends BancoDados{
             cliente.setId(cursor.getLong(cursor.getColumnIndex(Tabela.CAMPO_ID)));
             cliente.setNome(cursor.getString(cursor.getColumnIndex(Tabela.CAMPO_NOME)));
             cliente.setEmail(cursor.getString(cursor.getColumnIndex(Tabela.CAMPO_EMAIL)));
+            cliente.setAplicativoToken(cursor.getString(cursor.getColumnIndex(Tabela.CAMPO_APLICATIVO_TOKEN)));
         }
 
         cursor.close();
@@ -107,14 +121,6 @@ public class ClienteDAO extends BancoDados{
         public static final String CAMPO_ID = "_id";
         public static final String CAMPO_NOME = "nome";
         public static final String CAMPO_EMAIL = "email";
-    }
-
-    public static void createTable(SQLiteDatabase db){
-        String sql = "CREATE TABLE "+ Tabela.NOME_TABELA + " ( " +
-                Tabela.CAMPO_ID +" INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                Tabela.CAMPO_NOME + " TEXT NOT NULL, " +
-                Tabela.CAMPO_EMAIL + " TEXT NOT NULL, " +
-                "UNIQUE("+ Tabela.CAMPO_EMAIL + "));";
-        db.execSQL(sql);
+        public static final String CAMPO_APLICATIVO_TOKEN = "aplicativoToken";
     }
 }
