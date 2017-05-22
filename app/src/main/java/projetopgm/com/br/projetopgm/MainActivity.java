@@ -21,6 +21,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import projetopgm.com.br.projetopgm.abertura.AberturaServicoAcivity;
 import projetopgm.com.br.projetopgm.listagem.ListagemActivity;
 import projetopgm.com.br.projetopgm.localizacao.MapsActivity;
+import projetopgm.com.br.projetopgm.login.LoginHelper;
 
 public class MainActivity extends AppCompatActivity
         implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener{
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
+        LoginHelper.init(this);
         signIn();
 
         //TESTANDO 1,2,3.
@@ -107,8 +109,10 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void signIn() {
-        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-        startActivityForResult(signInIntent, RC_SIGN_IN);
+        if(!LoginHelper.isLogado()) {
+            Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+            startActivityForResult(signInIntent, RC_SIGN_IN);
+        }
     }
 
     @Override
@@ -124,8 +128,8 @@ public class MainActivity extends AppCompatActivity
     private void handleSignInResult(GoogleSignInResult result) {
         if (result.isSuccess()) {
             GoogleSignInAccount acct = result.getSignInAccount();
+            LoginHelper.salvarUsuario(this, acct);
             Toast.makeText(this, acct.getDisplayName() +" "+ acct.getEmail(), Toast.LENGTH_LONG).show();
-            //new Teste().execute(acct);
         } else {
             Toast.makeText(this, "Teste " + result.isSuccess(), Toast.LENGTH_SHORT).show();
         }

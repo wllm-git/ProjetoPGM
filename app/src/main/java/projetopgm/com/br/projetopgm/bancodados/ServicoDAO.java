@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 
+import projetopgm.com.br.projetopgm.base.Cliente;
 import projetopgm.com.br.projetopgm.base.Servico;
 
 public class ServicoDAO extends BancoDados{
@@ -31,6 +32,7 @@ public class ServicoDAO extends BancoDados{
         valores.put(Tabela.CAMPO_DESCRICAO, servico.getDescricao());
         valores.put(Tabela.CAMPO_TIPO, servico.getTipo().toString());
         valores.put(Tabela.CAMPO_STATUS, servico.getStatus().toString());
+        valores.put(Tabela.CAMPO_CLIENTE_ID, servico.getCliente().getId());
 
         long id = db.insert(Tabela.NOME_TABELA, null, valores);
         if(id != -1)
@@ -64,14 +66,14 @@ public class ServicoDAO extends BancoDados{
         return linhas;
     }
 
-    public ArrayList<Servico> buscarTodos(){
+    public ArrayList<Servico> buscarTodos(Cliente cliente){
         SQLiteDatabase db = getReadableDatabase();
 
         ArrayList<Servico> servicos = new ArrayList<>();
 
-        String sql = "select * from " + Tabela.NOME_TABELA + " order by " + Tabela.CAMPO_ID;
+        String sql = "select * from " + Tabela.NOME_TABELA + " where "+ Tabela.CAMPO_CLIENTE_ID + " = ? order by " + Tabela.CAMPO_ID;
 
-        Cursor cursor = db.rawQuery(sql, null);
+        Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(cliente.getId())});
 
         while (cursor.moveToNext()){
             Servico s = new Servico();
@@ -88,6 +90,7 @@ public class ServicoDAO extends BancoDados{
             s.setDesconto(cursor.getDouble(cursor.getColumnIndex(Tabela.CAMPO_DESCONTO)));
             s.setTipo(cursor.getString(cursor.getColumnIndex(Tabela.CAMPO_TIPO)));
             s.setStatus(cursor.getString(cursor.getColumnIndex(Tabela.CAMPO_STATUS)));
+            s.setCliente(cliente);
 
             servicos.add(s);
         }
@@ -98,14 +101,15 @@ public class ServicoDAO extends BancoDados{
         return servicos;
     }
 
-    public ArrayList<Servico> buscarFechadas(){
+    public ArrayList<Servico> buscarFechadas(Cliente cliente){
         SQLiteDatabase db = getReadableDatabase();
 
         ArrayList<Servico> servicos = new ArrayList<>();
 
-        String sql = "select * from " + Tabela.NOME_TABELA + " where "+ Tabela.CAMPO_STATUS + " = ? order by " + Tabela.CAMPO_ID;
+        String sql = "select * from " + Tabela.NOME_TABELA + " where " + Tabela.CAMPO_CLIENTE_ID + " = ? AND "
+                + Tabela.CAMPO_STATUS + " = ? order by " + Tabela.CAMPO_ID;
 
-        Cursor cursor = db.rawQuery(sql, new String[]{Servico.Status.FECHADO.toString()});
+        Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(cliente.getId()), Servico.Status.FECHADO.toString()});
 
         while (cursor.moveToNext()){
             Servico s = new Servico();
@@ -122,6 +126,7 @@ public class ServicoDAO extends BancoDados{
             s.setDesconto(cursor.getDouble(cursor.getColumnIndex(Tabela.CAMPO_DESCONTO)));
             s.setTipo(cursor.getString(cursor.getColumnIndex(Tabela.CAMPO_TIPO)));
             s.setStatus(cursor.getString(cursor.getColumnIndex(Tabela.CAMPO_STATUS)));
+            s.setCliente(cliente);
 
             servicos.add(s);
         }
@@ -146,6 +151,7 @@ public class ServicoDAO extends BancoDados{
         public static final String CAMPO_DESCONTO = "desconto";
         public static final String CAMPO_TIPO = "tipo";
         public static final String CAMPO_STATUS = "status";
+        public static final String CAMPO_CLIENTE_ID = "cliente_id";
     }
 
     public static void createTable(SQLiteDatabase db){
@@ -162,6 +168,7 @@ public class ServicoDAO extends BancoDados{
                 Tabela.CAMPO_DESCONTO + " REAL, " +
                 Tabela.CAMPO_TIPO + " TEXT NOT NULL, " +
                 Tabela.CAMPO_STATUS + " TEXT NOT NULL, " +
+                Tabela.CAMPO_CLIENTE_ID + " INTEGER NOT NULL, " +
                 "UNIQUE("+ Tabela.CAMPO_NUMERO + "));";
         db.execSQL(sql);
     }

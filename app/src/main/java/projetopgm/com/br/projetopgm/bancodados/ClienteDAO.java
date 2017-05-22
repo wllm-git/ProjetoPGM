@@ -80,6 +80,28 @@ public class ClienteDAO extends BancoDados{
         return clientes;
     }
 
+    public Cliente buscarPorEmail(String email){
+        SQLiteDatabase db = getReadableDatabase();
+
+        String sql = "select * from " + Tabela.NOME_TABELA + " where "+ Tabela.CAMPO_EMAIL + " = ? order by " + Tabela.CAMPO_ID;
+
+        Cursor cursor = db.rawQuery(sql, new String[]{email});
+
+        Cliente cliente = null;
+        if (cursor.moveToNext()){
+            cliente = new Cliente();
+
+            cliente.setId(cursor.getLong(cursor.getColumnIndex(Tabela.CAMPO_ID)));
+            cliente.setNome(cursor.getString(cursor.getColumnIndex(Tabela.CAMPO_NOME)));
+            cliente.setEmail(cursor.getString(cursor.getColumnIndex(Tabela.CAMPO_EMAIL)));
+        }
+
+        cursor.close();
+        db.close();
+
+        return cliente;
+    }
+
     public class Tabela{
         public static final String NOME_TABELA = "Cliente";
         public static final String CAMPO_ID = "_id";
