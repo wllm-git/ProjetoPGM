@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Project PGM</string>
+    <string name="action_listagem">Closed</string>
+    <string name="action_localizacao">Location</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_abertura">SERVICE OPENING</string>
+    <string name="hint_descricao_acticity_abertura">Problem Description</string>
+    <string name="btn_abertura_foto">Take a Picture</string>
+    <string name="btn_abertura_enviar">To Send</string>
+    <string name="texto_notificacao">Notification Test</string>
+</resources>
