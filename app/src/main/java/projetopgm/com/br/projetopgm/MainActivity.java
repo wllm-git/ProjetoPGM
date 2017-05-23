@@ -58,10 +58,10 @@ public class MainActivity extends AppCompatActivity
         signIn();
 
         //TESTANDO 1,2,3.
-        /*ServicoDAO servicoDAO = new ServicoDAO(this);
+       /* ServicoDAO servicoDAO = new ServicoDAO(this);
         Servico servico = new Servico();
         servico.setDataAbertura(new Date());
-        servico.setNumero("Y35");
+        servico.setNumero("T35");
         servico.setDescricao("FECHADA");
         servico.setTipo(Servico.Tipo.ORCAMENTO);
         servico.setStatus(Servico.Status.FECHADO);
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity
 
 
         servico.setDataAbertura(new Date());
-        servico.setNumero("F78");
+        servico.setNumero("JJ78");
         servico.setDescricao("FECHADA24");
         servico.setTipo(Servico.Tipo.ORCAMENTO);
         servico.setStatus(Servico.Status.FECHADO);
