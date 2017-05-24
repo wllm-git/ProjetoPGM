@@ -16,7 +16,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.Scopes;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.Scope;
 
 import projetopgm.com.br.projetopgm.abertura.AberturaServicoAcivity;
 import projetopgm.com.br.projetopgm.listagem.ListagemActivity;
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(this);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestScopes(new Scope(Scopes.PLUS_ME))
                 .requestEmail()
                 .build();
 
@@ -50,6 +53,7 @@ public class MainActivity extends AppCompatActivity
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
+        mGoogleApiClient.connect();
         LoginHelper.init(this);
         signIn();
 
