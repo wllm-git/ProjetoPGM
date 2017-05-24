@@ -14,13 +14,14 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class RotaHelper {
+    private static String API_KEY = "AIzaSyCoONX3Ws5_gdH5-yg4cz_5fxz1ZXvfz3I";
     public static List<LatLng> gerarRota(LatLng orig, LatLng dest){
         List<LatLng> posicoes = new ArrayList<>();
 
         try{
             String urlStr = String.format(Locale.US, "http://maps.google.com/maps/api/directions/json?"+
                         "origin=%f,%f&destination=%f,%f&"+
-                        "sensor=true&mode=driving",
+                        "mode=driving",
                     orig.latitude, orig.longitude,
                     dest.latitude, dest.longitude);
 
