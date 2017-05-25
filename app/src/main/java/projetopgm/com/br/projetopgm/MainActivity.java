@@ -20,7 +20,11 @@ import com.google.android.gms.common.Scopes;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Scope;
 
+import java.util.Date;
+
 import projetopgm.com.br.projetopgm.abertura.AberturaServicoAcivity;
+import projetopgm.com.br.projetopgm.bancodados.ServicoDAO;
+import projetopgm.com.br.projetopgm.base.Servico;
 import projetopgm.com.br.projetopgm.listagem.ListagemActivity;
 import projetopgm.com.br.projetopgm.localizacao.MapsActivity;
 import projetopgm.com.br.projetopgm.login.LoginHelper;
@@ -60,6 +64,7 @@ public class MainActivity extends AppCompatActivity
         //TESTANDO 1,2,3.
        /* ServicoDAO servicoDAO = new ServicoDAO(this);
         Servico servico = new Servico();
+        servico.setCliente(LoginHelper.usuarioLogado());
         servico.setDataAbertura(new Date());
         servico.setNumero("T35");
         servico.setDescricao("FECHADA");
@@ -67,12 +72,12 @@ public class MainActivity extends AppCompatActivity
         servico.setStatus(Servico.Status.FECHADO);
         servicoDAO.salvar(servico);
 
-
+        servico.setCliente(LoginHelper.usuarioLogado());
         servico.setDataAbertura(new Date());
         servico.setNumero("JJ78");
         servico.setDescricao("FECHADA24");
         servico.setTipo(Servico.Tipo.ORCAMENTO);
-        servico.setStatus(Servico.Status.FECHADO);
+        servico.setStatus(Servico.Status.CANCELADO);
         servico.setId(null);
         servicoDAO.salvar(servico);*/
 
