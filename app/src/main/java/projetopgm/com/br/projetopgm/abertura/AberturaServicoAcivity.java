@@ -1,5 +1,6 @@
 package projetopgm.com.br.projetopgm.abertura;
 
+
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -19,8 +20,10 @@ import android.widget.Toast;
 import java.io.ByteArrayOutputStream;
 
 import projetopgm.com.br.projetopgm.R;
+import projetopgm.com.br.projetopgm.bancodados.ServicoDAO;
 import projetopgm.com.br.projetopgm.base.Foto;
 import projetopgm.com.br.projetopgm.base.Servico;
+
 
 public class AberturaServicoAcivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -30,6 +33,9 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
     LinearLayout firstRow;
     LinearLayout secondRow;
     EditText description;
+    Button btnTakePicture;
+    Button btnSendService;
+
     int imagemid;
     int firstRowColumnNumber = 0;
     int secondRowColumnNumber = 0;
@@ -46,13 +52,15 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.mipmap.ic_launcher_round);
 
-        Button btnTakePicture = (Button) findViewById(R.id.btnTakePicture);
+        btnTakePicture = (Button) findViewById(R.id.btnTakePicture);
         btnTakePicture.setOnClickListener(this);
+        btnSendService = (Button) findViewById(R.id.btnSendService);
 
         servico = new Servico();
         firstRow = (LinearLayout) findViewById(R.id.row1);
         secondRow = (LinearLayout) findViewById(R.id.row2);
-        description = (EditText) findViewById(R.id.edtAberturaDescricao);
+        description = (EditText) findViewById(R.id.edtInfo);
+
 
         if(savedInstanceState != null){
 
@@ -172,5 +180,51 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
         else
             return false;
     }
+
+    public void sendService(View view){
+
+        ServicoDAO dao = new ServicoDAO(this);
+        String descriptionToSave = getDescription();
+
+
+        if(descriptionToSave.trim() != "")
+            servico.setDescricao(descriptionToSave);
+
+        else{
+            Toast.makeText(this, "Preencha a descrição do problema", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if(servico.getFotos().isEmpty()) {
+            Toast.makeText(this, "É necessário enviar no minimo 1 foto do veículo", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        dao.salvar(servico);
+
+        Toast.makeText(this, "Serviço enviado com sucesso!", Toast.LENGTH_SHORT).show();
+
+        disableComponents();
+
+    }
+
+    private void disableComponents(){
+        description.setEnabled(false);
+        btnTakePicture.setEnabled(false);
+        btnSendService.setEnabled(false);
+
+    }
+
+    public String getDescription(){
+
+
+        if(description != null)
+            return description.getText().toString();
+
+        return "";
+    }
+
 }
+
+
 
