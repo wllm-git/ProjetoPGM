@@ -92,7 +92,7 @@
                     android:layout_height="80dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:src="@drawable/celta_mini" />
+                    android:src="@drawable/camera_launcher" />
 
                 <ImageView
                     android:id="@+id/imagem2"
@@ -100,7 +100,7 @@
                     android:layout_height="80dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="10dp"
-                    android:src="@drawable/celta_mini" />
+                    android:src="@drawable/camera_launcher" />
 
                 <ImageView
                     android:id="@+id/imagem3"
@@ -108,7 +108,7 @@
                     android:layout_height="80dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="10dp"
-                    android:src="@drawable/celta_mini" />
+                    android:src="@drawable/camera_launcher" />
 
             </LinearLayout>
 
@@ -132,7 +132,7 @@
             android:layout_height="80dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:src="@drawable/celta_mini" />
+            android:src="@drawable/camera_launcher" />
 
         <ImageView
             android:id="@+id/imagem5"
@@ -140,7 +140,7 @@
             android:layout_height="80dp"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="10dp"
-            android:src="@drawable/celta_mini" />
+            android:src="@drawable/camera_launcher" />
 
         <ImageView
             android:id="@+id/imagem6"
@@ -148,7 +148,7 @@
             android:layout_height="80dp"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="10dp"
-            android:src="@drawable/celta_mini" />
+            android:src="@drawable/camera_launcher" />
 
 
         </LinearLayout>

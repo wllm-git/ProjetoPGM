@@ -166,7 +166,7 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
     }
     
     private Drawable getImagePlaceHolder(){
-        return getResources().getDrawable(R.drawable.celta_mini);
+        return getResources().getDrawable(R.drawable.camera_launcher);
     }
 
     private boolean isPlaceHolderImage(ImageView placeHolder){
