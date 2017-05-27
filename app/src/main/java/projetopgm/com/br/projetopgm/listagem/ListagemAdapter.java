@@ -9,20 +9,24 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.zip.Inflater;
 
 import projetopgm.com.br.projetopgm.R;
 import projetopgm.com.br.projetopgm.base.Servico;
 
+
 public class ListagemAdapter extends BaseAdapter {
 
     private ArrayList<Servico> servicos;
     private Context context;
+    private SimpleDateFormat sdf;
 
     public ListagemAdapter(Context context, ArrayList<Servico> servicos) {
         this.servicos = servicos;
         this.context = context;
+        this.sdf = new SimpleDateFormat("dd/MM/yyyy");
     }
 
     @Override
@@ -53,9 +57,12 @@ public class ListagemAdapter extends BaseAdapter {
         TextView dsc = (TextView) convertView.findViewById(R.id.tvwDesc);
         TextView dt = (TextView) convertView.findViewById(R.id.tvwData);
         TextView st = (TextView) convertView.findViewById(R.id.tvwStatusListagem);
+        if(s.getDescricao().length() >= 20)
+            dsc.setText(s.getDescricao().substring(0,19));
+        else
+            dsc.setText(s.getDescricao());
 
-        dsc.setText(s.getDescricao());
-        dt.setText(s.getDataAbertura().toString());
+        dt.setText(sdf.format(s.getDataAbertura()));
         st.setText(s.getStatus().toString());
 
         return convertView;

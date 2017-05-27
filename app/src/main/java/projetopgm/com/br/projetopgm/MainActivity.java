@@ -62,20 +62,20 @@ public class MainActivity extends AppCompatActivity
         signIn();
 
         //TESTANDO 1,2,3.
-       /* ServicoDAO servicoDAO = new ServicoDAO(this);
+        /*ServicoDAO servicoDAO = new ServicoDAO(this);
         Servico servico = new Servico();
         servico.setCliente(LoginHelper.usuarioLogado());
         servico.setDataAbertura(new Date());
-        servico.setNumero("T35");
-        servico.setDescricao("FECHADA");
+        servico.setNumero("R10");
+        servico.setDescricao("MEU CARRO QUEBROU PORQUE NÃO AGUENTOU A VIAGEM QUE EU FIZ PARA O INTERIOR DO BRASIL");
         servico.setTipo(Servico.Tipo.ORCAMENTO);
         servico.setStatus(Servico.Status.FECHADO);
         servicoDAO.salvar(servico);
 
         servico.setCliente(LoginHelper.usuarioLogado());
         servico.setDataAbertura(new Date());
-        servico.setNumero("JJ78");
-        servico.setDescricao("FECHADA24");
+        servico.setNumero("GFH536");
+        servico.setDescricao("MEU CARRO QUEBROU PORQUE NÃO AGUENTOU A VIAGEM QUE EU FIZ PARA O INTERIOR DO NORDESTE");
         servico.setTipo(Servico.Tipo.ORCAMENTO);
         servico.setStatus(Servico.Status.CANCELADO);
         servico.setId(null);
