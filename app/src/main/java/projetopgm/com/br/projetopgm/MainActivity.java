@@ -20,11 +20,7 @@ import com.google.android.gms.common.Scopes;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Scope;
 
-import java.util.Date;
-
 import projetopgm.com.br.projetopgm.abertura.AberturaServicoAcivity;
-import projetopgm.com.br.projetopgm.bancodados.ServicoDAO;
-import projetopgm.com.br.projetopgm.base.Servico;
 import projetopgm.com.br.projetopgm.listagem.ListagemActivity;
 import projetopgm.com.br.projetopgm.localizacao.MapsActivity;
 import projetopgm.com.br.projetopgm.login.LoginHelper;
@@ -60,6 +56,10 @@ public class MainActivity extends AppCompatActivity
         mGoogleApiClient.connect();
         LoginHelper.init(this);
         signIn();
+
+
+        //ServicoWebTask webTask = new ServicoWebTask();
+        //webTask.execute(new Servico());
 
         //TESTANDO 1,2,3.
        /* ServicoDAO servicoDAO = new ServicoDAO(this);
