@@ -65,106 +65,97 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginEnd="19dp"
+        android:layout_alignBottom="@+id/linearLayout2"
+        android:layout_alignParentEnd="true">
+
+        <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginRight="10dp"
         android:id="@+id/linearLayout">
 
-        <ScrollView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="270dp"
+                android:layout_height="wrap_content">
 
-            <LinearLayout
-            android:id="@+id/row1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_below="@+id/toolbar"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="42dp">
+                <LinearLayout
+                    android:id="@+id/row1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
 
-                <ImageView
-                    android:id="@+id/imagem1"
-                    android:layout_width="100dp"
-                    android:layout_height="80dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:src="@drawable/camera_launcher" />
+                    android:layout_marginEnd="42dp"
+                    android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/imagem2"
-                    android:layout_width="100dp"
-                    android:layout_height="80dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="10dp"
-                    android:src="@drawable/camera_launcher" />
+                    <ImageView
+                        android:id="@+id/imagem1"
+                        android:layout_width="100dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/place_holder" />
 
-                <ImageView
-                    android:id="@+id/imagem3"
-                    android:layout_width="100dp"
-                    android:layout_height="80dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="10dp"
-                    android:src="@drawable/camera_launcher" />
+                    <ImageView
+                        android:id="@+id/imagem2"
+                        android:layout_width="100dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/place_holder" />
 
-            </LinearLayout>
+                    <ImageView
+                        android:id="@+id/imagem3"
+                        android:layout_width="100dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/place_holder" />
 
-        </ScrollView>
+                </LinearLayout>
 
-        <ScrollView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+                <LinearLayout
+                    android:id="@+id/row2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/row1"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginEnd="96dp"
+                    android:orientation="vertical">
 
-            <LinearLayout
-        android:id="@+id/row2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
-        android:orientation="vertical"
-        android:layout_toStartOf="@+id/linear">
+                    <ImageView
+                        android:id="@+id/imagem4"
+                        android:layout_width="100dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/place_holder" />
 
-        <ImageView
-            android:id="@+id/imagem4"
-            android:layout_width="100dp"
-            android:layout_height="80dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/camera_launcher" />
+                    <ImageView
+                        android:id="@+id/imagem5"
+                        android:layout_width="100dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/place_holder" />
 
-        <ImageView
-            android:id="@+id/imagem5"
-            android:layout_width="100dp"
-            android:layout_height="80dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/camera_launcher" />
+                    <ImageView
+                        android:id="@+id/imagem6"
+                        android:layout_width="100dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/place_holder" />
 
-        <ImageView
-            android:id="@+id/imagem6"
-            android:layout_width="100dp"
-            android:layout_height="80dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/camera_launcher" />
 
+                </LinearLayout>
+
+            </RelativeLayout>
 
         </LinearLayout>
-
-        </ScrollView>
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/title_activity_abertura"
-        android:layout_marginStart="39dp"
-        android:layout_above="@+id/linearLayout2"
-        android:layout_alignStart="@+id/linearLayout2"
-        android:layout_marginBottom="33dp" />
+    </ScrollView>
 
 </RelativeLayout>
