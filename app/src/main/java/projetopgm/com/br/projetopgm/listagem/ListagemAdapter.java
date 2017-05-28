@@ -43,7 +43,7 @@ public class ListagemAdapter extends BaseAdapter {
         return position;
     }
 
-    @Override
+        @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
         convertView = LayoutInflater.from(context).inflate(R.layout.fragment_listagem_item, null);
@@ -52,10 +52,17 @@ public class ListagemAdapter extends BaseAdapter {
         //ImageView img = (ImageView) convertView.findViewById(R.id.imgIcone);
         TextView dsc = (TextView) convertView.findViewById(R.id.tvwDesc);
         TextView dt = (TextView) convertView.findViewById(R.id.tvwData);
+        TextView st = (TextView) convertView.findViewById(R.id.tvwStatusListagem);
 
         dsc.setText(s.getDescricao());
-        dt.setText(s.getDataFechamento().toString());
+        dt.setText(s.getDataAbertura().toString());
+        st.setText(s.getStatus().toString());
 
         return convertView;
+    }
+
+    public ArrayList<Servico> getServicos(){
+
+        return this.servicos;
     }
 }

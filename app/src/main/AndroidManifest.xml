@@ -35,6 +35,20 @@
         <activity android:name=".acompanhamento.AcompanhamentoServicoActivity" android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".listagem.ListagemActivity" android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".detalhes.DetalhesActivity" android:theme="@style/AppTheme.NoActionBar"/>
+
+        <service
+            android:name=".fcm.FcmService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".fcm.FcmHelper">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

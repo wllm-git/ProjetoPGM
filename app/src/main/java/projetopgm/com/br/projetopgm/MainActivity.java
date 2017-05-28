@@ -16,11 +16,18 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.Scopes;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.Scope;
+
+import java.util.Date;
 
 import projetopgm.com.br.projetopgm.abertura.AberturaServicoAcivity;
+import projetopgm.com.br.projetopgm.bancodados.ServicoDAO;
+import projetopgm.com.br.projetopgm.base.Servico;
 import projetopgm.com.br.projetopgm.listagem.ListagemActivity;
 import projetopgm.com.br.projetopgm.localizacao.MapsActivity;
+import projetopgm.com.br.projetopgm.login.LoginHelper;
 
 public class MainActivity extends AppCompatActivity
         implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener{
@@ -41,6 +48,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(this);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestScopes(new Scope(Scopes.PLUS_ME))
                 .requestEmail()
                 .build();
 
@@ -49,7 +57,30 @@ public class MainActivity extends AppCompatActivity
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
+        mGoogleApiClient.connect();
+        LoginHelper.init(this);
         signIn();
+
+        //TESTANDO 1,2,3.
+       /* ServicoDAO servicoDAO = new ServicoDAO(this);
+        Servico servico = new Servico();
+        servico.setCliente(LoginHelper.usuarioLogado());
+        servico.setDataAbertura(new Date());
+        servico.setNumero("T35");
+        servico.setDescricao("FECHADA");
+        servico.setTipo(Servico.Tipo.ORCAMENTO);
+        servico.setStatus(Servico.Status.FECHADO);
+        servicoDAO.salvar(servico);
+
+        servico.setCliente(LoginHelper.usuarioLogado());
+        servico.setDataAbertura(new Date());
+        servico.setNumero("JJ78");
+        servico.setDescricao("FECHADA24");
+        servico.setTipo(Servico.Tipo.ORCAMENTO);
+        servico.setStatus(Servico.Status.CANCELADO);
+        servico.setId(null);
+        servicoDAO.salvar(servico);*/
+
     }
 
     @Override
@@ -87,8 +118,10 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void signIn() {
-        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-        startActivityForResult(signInIntent, RC_SIGN_IN);
+        if(!LoginHelper.isLogado()) {
+            Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+            startActivityForResult(signInIntent, RC_SIGN_IN);
+        }
     }
 
     @Override
@@ -104,8 +137,8 @@ public class MainActivity extends AppCompatActivity
     private void handleSignInResult(GoogleSignInResult result) {
         if (result.isSuccess()) {
             GoogleSignInAccount acct = result.getSignInAccount();
+            LoginHelper.salvarUsuario(this, acct);
             Toast.makeText(this, acct.getDisplayName() +" "+ acct.getEmail(), Toast.LENGTH_LONG).show();
-            //new Teste().execute(acct);
         } else {
             Toast.makeText(this, "Teste " + result.isSuccess(), Toast.LENGTH_SHORT).show();
         }
@@ -115,28 +148,32 @@ public class MainActivity extends AppCompatActivity
     private static HttpTransport HTTP_TRANSPORT = AndroidHttp.newCompatibleTransport();
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
     private static final String APPLICATION_NAME = "Projeto PGM";
-    private class Teste extends AsyncTask<GoogleSignInAccount, Void, Person>{
+    private class Teste extends AsyncTask<GoogleSignInAccount, Void, Person> {
 
         @Override
         protected Person doInBackground(GoogleSignInAccount... params) {
 
             GoogleSignInAccount googleSignInAccount = params[0];
+
             Collection<String> collection = new ArrayList();
             collection.add(Scopes.PROFILE);
+            collection.add(Scopes.PLUS_ME);
 
             GoogleAccountCredential credential =
-                    GoogleAccountCredential.usingOAuth2(MainActivity.this, collection);
+                    GoogleAccountCredential.usingOAuth2(MainActivity.this, Arrays.asList(s));
             credential.setSelectedAccount(googleSignInAccount.getAccount());
                     //new Account(googleSignInAccount.getEmail() , "com.google"));
             People service = new People.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential)
-                    .setApplicationName(APPLICATION_NAME)
+                    //.setApplicationName(APPLICATION_NAME)
                     .build();
 
             try{
+
+
                 Person meProfile = service.people().get("people/me")
-                        .setRequestMaskIncludeField("person.addresses")
+                        //.setRequestMaskIncludeField("person.addresses")
                         .setRequestMaskIncludeField("person.birthdays")
-                        .setRequestMaskIncludeField("person.genders")
+                        //.setRequestMaskIncludeField("person.genders")
                         .execute();
                 // e.g. Gender
 
@@ -156,5 +193,5 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(MainActivity.this, "Teste erro", Toast.LENGTH_SHORT).show();
         }
     }
-    */
+*/
 }
