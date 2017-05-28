@@ -9,7 +9,7 @@ public class ServicoWebTask extends AsyncTask<Servico, Void, String> {
     @Override
     protected String doInBackground(Servico... params) {
         try{
-            String cod = ServicoWebHelper.sendRegistrationToServer("321sds5a6d4w8e7w9q74d5sa54d56a1");
+            String cod = ServicoWebHelper.sendServicoToServer(params[0]);
             return cod;
         }catch (Exception ex){
             return ex.getMessage();

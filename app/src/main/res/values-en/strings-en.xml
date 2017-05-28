@@ -8,5 +8,5 @@
     <string name="hint_descricao_acticity_abertura">Problem Description</string>
     <string name="btn_abertura_foto">Take a Picture</string>
     <string name="btn_abertura_enviar">To Send</string>
-    <string name="texto_notificacao">Notification Test</string>
+    <string name="texto_notificacao">Service</string>
 </resources>

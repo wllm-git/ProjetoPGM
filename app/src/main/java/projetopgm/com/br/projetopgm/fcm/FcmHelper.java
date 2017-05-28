@@ -28,7 +28,7 @@ public class FcmHelper extends FirebaseInstanceIdService {
     }
 
     private void sendRegistrationToServer(String token) throws IOException {
-        URL url = new URL("http://"+ SERVER_URL + "/api/ServicoApi");
+        URL url = new URL("http://"+ SERVER_URL + "/api/ClienteApi");
         HttpURLConnection conexao = (HttpURLConnection) url.openConnection();
         conexao.setRequestMethod("POST");
         conexao.setDoOutput(true);

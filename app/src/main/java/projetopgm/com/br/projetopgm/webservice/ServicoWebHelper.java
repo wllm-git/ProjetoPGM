@@ -10,13 +10,14 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import projetopgm.com.br.projetopgm.base.Cliente;
+import projetopgm.com.br.projetopgm.base.Servico;
 import projetopgm.com.br.projetopgm.login.LoginHelper;
 
 public class ServicoWebHelper {
     private static final String SERVER_URL = "localhost:3461";
 
     @NonNull
-    public static String sendRegistrationToServer(String token) throws IOException {
+    public static String sendServicoToServer(Servico servico) throws IOException {
         URL url = new URL("http://" + SERVER_URL + "/api/ServicoApi");
         HttpURLConnection conexao = (HttpURLConnection) url.openConnection();
         conexao.setRequestMethod("POST");
@@ -25,10 +26,10 @@ public class ServicoWebHelper {
         conexao.setRequestProperty("Accept", "application/json");
 
         Cliente cliente = LoginHelper.usuarioLogado();
-        cliente.setAplicativoToken(token);
+        servico.setCliente(cliente);
         Gson gson = new Gson();
 
-        String json = gson.toJson(cliente);
+        String json = gson.toJson(servico);
 
         OutputStream os = conexao.getOutputStream();
         os.write(json.getBytes());

@@ -58,18 +58,15 @@ public class MainActivity extends AppCompatActivity
         signIn();
 
 
-        //ServicoWebTask webTask = new ServicoWebTask();
-        //webTask.execute(new Servico());
-
         //TESTANDO 1,2,3.
-       /* ServicoDAO servicoDAO = new ServicoDAO(this);
+        /*ServicoDAO servicoDAO = new ServicoDAO(this);
         Servico servico = new Servico();
         servico.setCliente(LoginHelper.usuarioLogado());
         servico.setDataAbertura(new Date());
-        servico.setNumero("T35");
-        servico.setDescricao("FECHADA");
+        servico.setNumero("G78");
+        servico.setDescricao("TESTE WEB SERVICE COM NOTIFICAÇÃO DO SERVIDOR.");
         servico.setTipo(Servico.Tipo.ORCAMENTO);
-        servico.setStatus(Servico.Status.FECHADO);
+        servico.setStatus(Servico.Status.ABERTO);
         servicoDAO.salvar(servico);
 
         servico.setCliente(LoginHelper.usuarioLogado());
@@ -79,8 +76,11 @@ public class MainActivity extends AppCompatActivity
         servico.setTipo(Servico.Tipo.ORCAMENTO);
         servico.setStatus(Servico.Status.CANCELADO);
         servico.setId(null);
-        servicoDAO.salvar(servico);*/
+        servicoDAO.salvar(servico);
 
+
+        ServicoWebTask webTask = new ServicoWebTask();
+        webTask.execute(servico);*/
     }
 
     @Override
