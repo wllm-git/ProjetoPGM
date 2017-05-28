@@ -9,9 +9,15 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.util.Date;
 
 import projetopgm.com.br.projetopgm.MainActivity;
 import projetopgm.com.br.projetopgm.R;
+import projetopgm.com.br.projetopgm.bancodados.ServicoDAO;
+import projetopgm.com.br.projetopgm.base.Servico;
 
 public class FcmService extends FirebaseMessagingService {
     public static final int NOTIFICATION_ID = 1;
@@ -23,7 +29,17 @@ public class FcmService extends FirebaseMessagingService {
         Bundle extras = intent.getExtras();
 
         if(!extras.isEmpty()){
-            sendNotification(extras.getString("mensagem"));
+            ServicoDAO servicoDAO = new ServicoDAO(this);
+            String json = extras.getString("servico");
+            Gson gson = new GsonBuilder()
+                    .registerTypeAdapter(Date.class, new JsonDateDeserializer())
+                    .registerTypeAdapter(Servico.Status.class, new JsonStatusDeserializer())
+                    .registerTypeAdapter(Servico.Tipo.class, new JsonTipoDeserializer())
+                    .create();
+            Servico servico = gson.fromJson(json, Servico.class);
+            servicoDAO.salvar(servico);
+            sendNotification(getString(R.string.texto_notificacao) + " "
+                    + servico.getNumero() + " (" + servico.getStatus().toString()+ ")");
         }
     }
 

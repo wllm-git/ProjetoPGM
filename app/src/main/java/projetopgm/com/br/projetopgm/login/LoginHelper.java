@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.firebase.FirebaseApp;
 
 import projetopgm.com.br.projetopgm.bancodados.ClienteDAO;
 import projetopgm.com.br.projetopgm.base.Cliente;
@@ -14,6 +15,7 @@ public class LoginHelper {
     private static SharedPreferences preferences;
 
     public static void init(Context context) {
+        FirebaseApp.initializeApp(context);
         preferences = context.getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE);
         if(preferences != null){
             long id = preferences.getLong("clienteId", -1);

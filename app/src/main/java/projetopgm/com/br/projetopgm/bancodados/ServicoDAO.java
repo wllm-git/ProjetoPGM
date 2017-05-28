@@ -20,6 +20,25 @@ public class ServicoDAO extends BancoDados{
         fotoDAO = new FotoDAO(context);
     }
 
+    public static void createTable(SQLiteDatabase db){
+        String sql = "CREATE TABLE "+ Tabela.NOME_TABELA + " ( " +
+                Tabela.CAMPO_ID +" INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                Tabela.CAMPO_DATAABERTURA + " INTEGER NOT NULL, " +
+                Tabela.CAMPO_DATAAVALIACAO + " INTEGER, " +
+                Tabela.CAMPO_DATAFECHAMENTO + " INTEGER, " +
+                Tabela.CAMPO_NUMERO + " TEXT NOT NULL, " +
+                Tabela.CAMPO_DESCRICAO + " TEXT NOT NULL, " +
+                Tabela.CAMPO_PRECOAVALIADO + " REAL, " +
+                Tabela.CAMPO_PRECOFINAL + " REAL, " +
+                Tabela.CAMPO_ACRESCIMO + " REAL, " +
+                Tabela.CAMPO_DESCONTO + " REAL, " +
+                Tabela.CAMPO_TIPO + " TEXT NOT NULL, " +
+                Tabela.CAMPO_STATUS + " TEXT NOT NULL, " +
+                Tabela.CAMPO_CLIENTE_ID + " INTEGER NOT NULL, " +
+                "UNIQUE("+ Tabela.CAMPO_NUMERO + "));";
+        db.execSQL(sql);
+    }
+
     public void salvar(Servico servico){
         if(servico.getId() == null || servico.getId() <= 0)
             inserir(servico);
@@ -66,6 +85,11 @@ public class ServicoDAO extends BancoDados{
         valores.put(Tabela.CAMPO_DESCONTO, servico.getDesconto());
         valores.put(Tabela.CAMPO_TIPO, servico.getTipo().toString());
         valores.put(Tabela.CAMPO_STATUS, servico.getStatus().toString());
+
+        if(servico.getDataAvaliacao() != null)
+            valores.put(Tabela.CAMPO_DATAAVALIACAO, servico.getDataAvaliacao().getTime());
+        if(servico.getDataFechamento() != null)
+            valores.put(Tabela.CAMPO_DATAFECHAMENTO, servico.getDataFechamento().getTime());
 
         int linhas = db.update(Tabela.NOME_TABELA,
                 valores,
@@ -211,24 +235,5 @@ public class ServicoDAO extends BancoDados{
         public static final String CAMPO_TIPO = "tipo";
         public static final String CAMPO_STATUS = "status";
         public static final String CAMPO_CLIENTE_ID = "cliente_id";
-    }
-
-    public static void createTable(SQLiteDatabase db){
-        String sql = "CREATE TABLE "+ Tabela.NOME_TABELA + " ( " +
-                Tabela.CAMPO_ID +" INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                Tabela.CAMPO_DATAABERTURA + " INTEGER NOT NULL, " +
-                Tabela.CAMPO_DATAAVALIACAO + " INTEGER, " +
-                Tabela.CAMPO_DATAFECHAMENTO + " INTEGER, " +
-                Tabela.CAMPO_NUMERO + " TEXT NOT NULL, " +
-                Tabela.CAMPO_DESCRICAO + " TEXT NOT NULL, " +
-                Tabela.CAMPO_PRECOAVALIADO + " REAL, " +
-                Tabela.CAMPO_PRECOFINAL + " REAL, " +
-                Tabela.CAMPO_ACRESCIMO + " REAL, " +
-                Tabela.CAMPO_DESCONTO + " REAL, " +
-                Tabela.CAMPO_TIPO + " TEXT NOT NULL, " +
-                Tabela.CAMPO_STATUS + " TEXT NOT NULL, " +
-                Tabela.CAMPO_CLIENTE_ID + " INTEGER NOT NULL, " +
-                "UNIQUE("+ Tabela.CAMPO_NUMERO + "));";
-        db.execSQL(sql);
     }
 }
