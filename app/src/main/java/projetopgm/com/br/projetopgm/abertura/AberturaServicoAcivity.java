@@ -27,21 +27,22 @@ import projetopgm.com.br.projetopgm.base.Cliente;
 import projetopgm.com.br.projetopgm.base.Foto;
 import projetopgm.com.br.projetopgm.base.Servico;
 import projetopgm.com.br.projetopgm.login.LoginHelper;
+import projetopgm.com.br.projetopgm.webservice.ServicoWebTask;
 
 
 public class AberturaServicoAcivity extends AppCompatActivity implements View.OnClickListener{
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
-    EditText description;
-    Button btnTakePicture;
-    Button btnSendService;
+
+//    Button btnTakePicture;
+//    Button btnSendService;
 
     AberturaFotoFragment fragmentFotos;
     AberturaInfoFrament fragmentInfo;
 
     Servico servico;
-
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,15 +56,14 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
 
 
         fragmentFotos = (AberturaFotoFragment) getSupportFragmentManager().findFragmentById(R.id.framentAberturaFotos);
-        fragmentInfo = (AberturaInfoFrament) getSupportFragmentManager().findFragmentById(R.id.fragmentDetalhesInfo);
+        fragmentInfo = (AberturaInfoFrament) getSupportFragmentManager().findFragmentById(R.id.framentAberturaInfo);
+        fragmentInfo.addOnClickListener(this);
 
-
-        btnTakePicture = (Button) findViewById(R.id.btnTakePicture);
-        btnTakePicture.setOnClickListener(this);
-        btnSendService = (Button) findViewById(R.id.btnSendService);
+//        btnTakePicture = (Button) findViewById(R.id.btnTakePicture);
+//        btnTakePicture.setOnClickListener(this);
+//        btnSendService = (Button) findViewById(R.id.btnSendService);
 
         servico = new Servico();
-        description = (EditText) findViewById(R.id.aberturaEdtInfo);
 
 
         if(savedInstanceState != null){
@@ -79,8 +79,8 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
                 }
             }
 
-            if(description != null)
-                description.setText(savedInstanceState.getString("description"));
+           if(fragmentInfo.descricao != null)
+               fragmentInfo.descricao.setText(savedInstanceState.getString("description"));
 
         }
 
@@ -90,12 +90,21 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
     @Override
     public void onClick(View v) {
 
-        if((fragmentFotos.verifyTotalFotos()) == 6){
-            Toast.makeText(this,"Número máximo de fotos atingido, apague uma foto para continuar",Toast.LENGTH_LONG).show();
-            return;
+        switch (v.getId()){
+
+            case R.id.btnTakePicture :
+                if((fragmentFotos.verifyTotalFotos()) == 6){
+                    Toast.makeText(this,"Número máximo de fotos atingido, apague uma foto para continuar",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                takePictureIntent();
+                break;
+
+            case R.id.btnSendService:
+                sendService();
+                break;
         }
 
-        takePictureIntent();
     }
 
     @Override
@@ -127,8 +136,8 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
             if(servico.getFotos() != null)
                 outState.putSerializable("servico",servico);
 
-            if(description != null)
-                outState.putString("descricao",description.getText().toString());
+            if(fragmentInfo.descricao.getText().toString() != null)
+                outState.putString("descricao",fragmentInfo.descricao.getText().toString());
     }
 
     private void takePictureIntent(){
@@ -139,7 +148,7 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
     }
 
 
-    public void sendService(View view){
+    public void sendService(){
 
         ServicoDAO dao = new ServicoDAO(this);
         String descriptionToSave = getDescription();
@@ -147,39 +156,46 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
         if(LoginHelper.usuarioLogado() != null)
             servico.setCliente(LoginHelper.usuarioLogado());
 
-        if(descriptionToSave.trim() != "")
+        if(!descriptionToSave.trim().equals("") )
             servico.setDescricao(descriptionToSave);
-
         else{
             Toast.makeText(this, "Preencha a descrição do problema", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if(servico.getFotos().isEmpty()) {
-            Toast.makeText(this, "É necessário enviar no minimo uma foto do veículo", Toast.LENGTH_SHORT).show();
-            return;
-        }
+//        if(servico.getFotos().isEmpty()) {
+//            Toast.makeText(this, "É necessário enviar no minimo uma foto do veículo", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+
+        servico.setStatus(Servico.Status.ABERTO);
+        servico.setTipo(Servico.Tipo.ORCAMENTO);
+        servico.setDataAbertura(new Date());
+        servico.setNumero(String.valueOf(new Date().getTime()));
 
         dao.salvar(servico);
 
-        Toast.makeText(this, "Serviço enviado!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Serviço salvo!", Toast.LENGTH_SHORT).show();
+
+        ServicoWebTask webTask = new ServicoWebTask();
+        webTask.execute(servico);
 
         disableComponents();
 
     }
 
     private void disableComponents(){
-        description.setEnabled(false);
-        btnTakePicture.setEnabled(false);
-        btnSendService.setEnabled(false);
+        fragmentInfo.descricao.setEnabled(false);
+        fragmentInfo.btnFoto.setEnabled(false);
+        fragmentInfo.btnEnviar.setEnabled(false);
+
 
     }
 
     public String getDescription(){
 
-
-        if(description != null)
-            return description.getText().toString();
+        if(fragmentInfo.descricao.getText().toString() != null)
+            return fragmentInfo.descricao.getText().toString();
 
         return "";
     }
