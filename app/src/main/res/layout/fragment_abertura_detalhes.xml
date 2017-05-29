@@ -1,35 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="wrap_content" android:layout_height="wrap_content">
 
 
     <EditText
-        android:id="@+id/edtAberturaDescricao"
-        android:layout_width="wrap_content"
+        android:id="@+id/aberturaEdtInfo"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="46dp"
-        android:ems="10"
-        android:inputType="textMultiLine"
-        android:hint="Digite detalhes do problema"
-        android:layout_above="@+id/btnEnviar"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:id="@+id/btnEnviar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="29dp"
-        android:layout_marginEnd="39dp"
-        android:text="Enviar" />
-
-    <Button
-        android:id="@+id/btnFoto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/btnEnviar"
+        android:hint="@string/hint_descricao_acticity_abertura"
+        android:layout_above="@+id/btnTakePicture"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="47dp"
-        android:text="Nova Foto" />
+        android:layout_marginBottom="48dp" />
+
+
+    <Button
+        android:id="@+id/btnTakePicture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_abertura_foto"
+        android:layout_marginBottom="26dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/edtInfo" />
+
+    <Button
+        android:id="@+id/btnSendService"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_abertura_enviar"
+        android:onClick="sendService"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/aberturaEdtInfo" />
 </RelativeLayout>
