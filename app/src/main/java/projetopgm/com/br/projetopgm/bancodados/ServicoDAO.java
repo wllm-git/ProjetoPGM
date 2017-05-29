@@ -184,7 +184,7 @@ public class ServicoDAO extends BancoDados{
         SQLiteDatabase db = getReadableDatabase();
 
         String sql = "select * from " + Tabela.NOME_TABELA + " where " + Tabela.CAMPO_CLIENTE_ID + " = ? AND "
-                + Tabela.CAMPO_STATUS + " in ( ?, ? ) order by " + Tabela.CAMPO_ID;
+                + Tabela.CAMPO_STATUS + " in ( ?, ? ) order by " + Tabela.CAMPO_ID + " desc";
 
         Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(cliente.getId()),
                 Servico.Status.ABERTO.toString(),

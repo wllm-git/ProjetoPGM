@@ -7,10 +7,10 @@
     tools:context="projetopgm.com.br.projetopgm.detalhes.DetalhesActivity">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        android:id="@+id/appBarLayout3">
+        android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -26,9 +26,9 @@
         android:name="projetopgm.com.br.projetopgm.detalhes.DetalhesInfoFragment"
         android:layout_width="match_parent"
         android:layout_height="400dp"
-        tools:layout="@layout/fragment_detalhes_info"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/appBarLayout3" />
+        android:layout_below="@+id/appBarLayout3"
+        tools:layout="@layout/fragment_detalhes_info" />
 
     <HorizontalScrollView
         android:id="@+id/horizontalScrollView"
@@ -42,9 +42,9 @@
             android:name="projetopgm.com.br.projetopgm.detalhes.DetalhesFotosFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:layout="@layout/fragment_detalhes_fotos"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/fragmentDetalhesInfo" />
+            android:layout_below="@+id/fragmentDetalhesInfo"
+            tools:layout="@layout/fragment_detalhes_fotos" />
     </HorizontalScrollView>
 
 </RelativeLayout>
