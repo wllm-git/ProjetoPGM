@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
-        android:src="@drawable/camera_launcher" />
+        android:src="@drawable/place_holder" />
 
     <ImageView
         android:id="@+id/imagem2"
@@ -22,7 +22,7 @@
         android:layout_height="90dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="20dp"
-        android:src="@drawable/camera_launcher"
+        android:src="@drawable/place_holder"
         android:tag="ima" />
 
     <ImageView
@@ -31,7 +31,7 @@
         android:layout_height="90dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="20dp"
-        android:src="@drawable/camera_launcher"
+        android:src="@drawable/place_holder"
         android:tag="ima" />
 
     <ImageView
@@ -40,7 +40,7 @@
         android:layout_height="90dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="20dp"
-        android:src="@drawable/camera_launcher" />
+        android:src="@drawable/place_holder" />
 
     <ImageView
         android:id="@+id/imagem4"
@@ -48,7 +48,7 @@
         android:layout_height="90dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
-        android:src="@drawable/camera_launcher" />
+        android:src="@drawable/place_holder" />
 
     <ImageView
         android:id="@+id/imagem6"
@@ -56,5 +56,5 @@
         android:layout_height="90dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="20dp"
-        android:src="@drawable/camera_launcher" />
+        android:src="@drawable/place_holder" />
 </LinearLayout>

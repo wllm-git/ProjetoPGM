@@ -1,6 +1,7 @@
 package projetopgm.com.br.projetopgm.abertura;
 
 
+import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
+import java.util.Date;
 
 import projetopgm.com.br.projetopgm.R;
 import projetopgm.com.br.projetopgm.bancodados.ServicoDAO;
@@ -30,19 +32,15 @@ import projetopgm.com.br.projetopgm.login.LoginHelper;
 public class AberturaServicoAcivity extends AppCompatActivity implements View.OnClickListener{
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
-    static final int COLUMNS_NUMBER = 3;
 
-    LinearLayout firstRow;
-    LinearLayout secondRow;
     EditText description;
     Button btnTakePicture;
     Button btnSendService;
 
-    int imagemid;
-    int firstRowColumnNumber = 0;
-    int secondRowColumnNumber = 0;
-    Servico servico;
+    AberturaFotoFragment fragmentFotos;
+    AberturaInfoFrament fragmentInfo;
 
+    Servico servico;
 
 
     @Override
@@ -55,14 +53,17 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.mipmap.ic_launcher_round);
 
+
+        fragmentFotos = (AberturaFotoFragment) getSupportFragmentManager().findFragmentById(R.id.framentAberturaFotos);
+        fragmentInfo = (AberturaInfoFrament) getSupportFragmentManager().findFragmentById(R.id.fragmentDetalhesInfo);
+
+
         btnTakePicture = (Button) findViewById(R.id.btnTakePicture);
         btnTakePicture.setOnClickListener(this);
         btnSendService = (Button) findViewById(R.id.btnSendService);
 
         servico = new Servico();
-        firstRow = (LinearLayout) findViewById(R.id.row1);
-        secondRow = (LinearLayout) findViewById(R.id.row2);
-        description = (EditText) findViewById(R.id.edtInfo);
+        description = (EditText) findViewById(R.id.aberturaEdtInfo);
 
 
         if(savedInstanceState != null){
@@ -74,7 +75,7 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
 
                     byte [] file = servico.getFotos().get(x).getArquivo();
                     Bitmap bitmap = BitmapFactory.decodeByteArray(file,0,file.length);
-                    addImage(bitmap);
+                    fragmentFotos.addImage(bitmap);
                 }
             }
 
@@ -84,18 +85,16 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
         }
 
 
-
     }
 
     @Override
     public void onClick(View v) {
 
-        if((firstRowColumnNumber + secondRowColumnNumber) == 6){
+        if((fragmentFotos.verifyTotalFotos()) == 6){
             Toast.makeText(this,"Número máximo de fotos atingido, apague uma foto para continuar",Toast.LENGTH_LONG).show();
             return;
         }
 
-        imagemid++;
         takePictureIntent();
     }
 
@@ -106,14 +105,14 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
             Bundle extras = data.getExtras();
             Bitmap imageBitMap = (Bitmap) extras.get("data");
 
-            addImage(imageBitMap);
+            fragmentFotos.addImage(imageBitMap);
 
             Foto foto = new Foto();
 
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             imageBitMap.compress(Bitmap.CompressFormat.PNG,100,stream);
             foto.setArquivo(stream.toByteArray());
-            foto.setNome("Foto0" + imagemid);
+            foto.setNome("Foto" + new Date().getTime());
 
             servico.getFotos().add(foto);
 
@@ -139,52 +138,6 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
         }
     }
 
-    private void addImage(Bitmap image){
-
-
-        if(firstRowColumnNumber < COLUMNS_NUMBER){
-            rowIterator(firstRow,image);
-            firstRowColumnNumber++;
-        }
-
-        else if(secondRowColumnNumber < COLUMNS_NUMBER){
-            rowIterator(secondRow,image);
-            secondRowColumnNumber++;
-            }
-
-    }
-
-    //Verify in which row the image will be added.
-    private void rowIterator(LinearLayout row, Bitmap image) {
-
-        for (int position = 0; position < row.getChildCount(); position++) {
-
-            ImageView placeHolder = (ImageView) row.getChildAt(position);
-
-            if ( isPlaceHolderImage(placeHolder)) {
-                placeHolder.setId(imagemid);
-                //place_holder.setImageBitmap(Bitmap.createScaledBitmap(image,160,110,true));
-                placeHolder.setImageBitmap(image);
-                return;
-            }
-        }
-    }
-    
-    private Drawable getImagePlaceHolder(){
-        return getResources().getDrawable(R.drawable.place_holder);
-    }
-
-    private boolean isPlaceHolderImage(ImageView placeHolder){
-
-        Bitmap placeHolderBitmap = ((BitmapDrawable)placeHolder.getDrawable()).getBitmap();
-        Drawable myDrawable = getImagePlaceHolder();
-        Bitmap imagePlaceHolder = ((BitmapDrawable)myDrawable).getBitmap();
-
-        if ( placeHolderBitmap.sameAs(imagePlaceHolder) )
-            return true;
-        else
-            return false;
-    }
 
     public void sendService(View view){
 

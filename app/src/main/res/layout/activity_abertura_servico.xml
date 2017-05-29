@@ -21,6 +21,9 @@
 
     </android.support.design.widget.AppBarLayout>
 
+
+
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -29,110 +32,38 @@
         android:layout_alignParentStart="true">
 
 
-        <HorizontalScrollView
-            android:id="@+id/imageScroll"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="92dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true">
+       <fragment
+           android:name="projetopgm.com.br.projetopgm.abertura.AberturaFotoFragment"
+           tools:layout="@layout/fragment_abertura_fotos"
+           android:id="@+id/framentAberturaFotos"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="92dp"
+           android:layout_alignParentTop="true"
+           android:layout_centerHorizontal="true">
 
-                <LinearLayout
-                android:id="@+id/imagesContainer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="50dp"
-                android:layout_centerHorizontal="true">
+       </fragment>
 
 
-                    <LinearLayout
-                        android:id="@+id/row1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+       <fragment
+           android:name="projetopgm.com.br.projetopgm.abertura.AberturaInfoFrament"
+           tools:layout="@layout/fragment_abertura_detalhes"
+           android:id="@+id/framentAberturaInfo"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_centerHorizontal="true"
+           android:layout_marginBottom="30dp">
 
-                        <ImageView
-                            android:id="@+id/imagem1"
-                            android:layout_width="96dp"
-                            android:layout_height="96dp"
-                            android:layout_marginLeft="10dp"
-                            android:src="@drawable/place_holder" />
+       </fragment>
 
-                        <ImageView
-                            android:id="@+id/imagem2"
-                            android:layout_width="96dp"
-                            android:layout_height="96dp"
-                            android:layout_marginLeft="5dp"
-                            android:src="@drawable/place_holder"
-                            />
-
-                        <ImageView
-                            android:id="@+id/imagem3"
-                            android:layout_width="96dp"
-                            android:layout_height="96dp"
-                            android:layout_marginLeft="5dp"
-                            android:src="@drawable/place_holder"
-                             />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                            android:id="@+id/row2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:id="@+id/imagem4"
-                                android:layout_width="96dp"
-                                android:layout_height="96dp"
-                                android:layout_marginLeft="10dp"
-                                android:src="@drawable/place_holder"/>
-
-                            <ImageView
-                                android:id="@+id/imagem5"
-                                android:layout_width="96dp"
-                                android:layout_height="96dp"
-                                android:layout_marginLeft="5dp"
-
-                                android:src="@drawable/place_holder"/>
-
-                            <ImageView
-                                android:id="@+id/imagem6"
-                                android:layout_width="96dp"
-                                android:layout_height="96dp"
-                                android:layout_marginLeft="5dp"
-
-                                android:src="@drawable/place_holder"/>
-
-
-                        </LinearLayout>
-
-            </LinearLayout>
-
-        </HorizontalScrollView>
-
-
-        <LinearLayout
-            android:id="@+id/infoContainer"
-            android:layout_above="@+id/btnTakePicture"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </LinearLayout>
-
-
+        <!--
         <EditText
             android:id="@+id/edtInfo"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:hint="@string/hint_descricao_acticity_abertura"
             android:layout_marginTop="21dp"
-            android:layout_below="@+id/imageScroll"
+            android:layout_below="@+id/framentFotos"
             android:layout_centerHorizontal="true" />
 
 
@@ -150,10 +81,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignEnd="@+id/edtInfo"
-            android:layout_below="@+id/infoContainer"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="26dp"
             android:text="@string/btn_abertura_enviar"
-            android:onClick="sendService"/>
-
+            android:onClick="sendService"
+            />
+-->
 
     </RelativeLayout>
 
