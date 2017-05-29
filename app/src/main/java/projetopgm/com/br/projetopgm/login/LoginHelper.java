@@ -15,7 +15,6 @@ public class LoginHelper {
     private static SharedPreferences preferences;
 
     public static void init(Context context) {
-        FirebaseApp.initializeApp(context);
         preferences = context.getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE);
         if(preferences != null){
             long id = preferences.getLong("clienteId", -1);
@@ -26,6 +25,7 @@ public class LoginHelper {
                 cliente.setId(id);
                 cliente.setNome(nome);
                 cliente.setEmail(email);
+                FirebaseApp.initializeApp(context);
             }
         }
     }
@@ -52,5 +52,6 @@ public class LoginHelper {
         editor.putString("clienteNome", cliente.getNome());
         editor.putString("clienteEmail", cliente.getEmail());
         editor.commit();
+        FirebaseApp.initializeApp(context);
     }
 }
