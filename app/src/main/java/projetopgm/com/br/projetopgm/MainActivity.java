@@ -59,8 +59,13 @@ public class MainActivity extends AppCompatActivity
 
 
         //TESTANDO 1,2,3.
-        /*ServicoDAO servicoDAO = new ServicoDAO(this);
-        Servico servico = new Servico();
+        /*
+        ServicoDAO servicoDAO = new ServicoDAO(this);
+        Servico servico = servicoDAO.buscarAberta(LoginHelper.usuarioLogado());
+
+        //servico.setTipo(Servico.Tipo.OS);
+        //servicoDAO.salvar(servico);
+
         servico.setCliente(LoginHelper.usuarioLogado());
         servico.setDataAbertura(new Date());
         servico.setNumero("G78");
@@ -80,7 +85,8 @@ public class MainActivity extends AppCompatActivity
 
 
         ServicoWebTask webTask = new ServicoWebTask();
-        webTask.execute(servico);*/
+        webTask.execute(servico);
+        */
     }
 
     @Override

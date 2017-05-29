@@ -16,7 +16,7 @@ import projetopgm.com.br.projetopgm.login.LoginHelper;
 
 public class FcmHelper extends FirebaseInstanceIdService {
 
-    private static final String SERVER_URL = "localhost:3461";
+    private static final String SERVER_URL = "http://www.projetopgmads.somee.com";
     @Override
     public void onTokenRefresh() {
         try{
