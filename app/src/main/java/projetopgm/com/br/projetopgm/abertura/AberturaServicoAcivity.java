@@ -34,7 +34,7 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
     AberturaInfoFrament fragmentInfo;
 
     Servico servico;
-    
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

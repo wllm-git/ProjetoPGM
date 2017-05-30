@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import projetopgm.com.br.projetopgm.R;
+import projetopgm.com.br.projetopgm.base.Servico;
 
 public class AberturaInfoFrament extends Fragment {
 
@@ -31,11 +32,16 @@ public class AberturaInfoFrament extends Fragment {
         btnFoto = (Button) layout.findViewById(R.id.btnTakePicture);
 
 
+
         return layout;
     }
 
     public void addOnClickListener(View.OnClickListener listener) {
         btnEnviar.setOnClickListener(listener);
-        btnEnviar.setOnClickListener(listener);
+        btnFoto.setOnClickListener(listener);
+    }
+
+    public String getDescription(){
+        return descricao.getText().toString();
     }
 }
