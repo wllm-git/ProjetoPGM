@@ -7,26 +7,26 @@
         android:id="@+id/aberturaEdtInfo"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:hint="@string/hint_descricao_acticity_abertura"
         android:layout_above="@+id/btnTakePicture"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="48dp" />
+        android:layout_marginBottom="48dp"
+        android:hint="@string/hint_descricao_acticity_abertura" />
 
 
     <Button
         android:id="@+id/btnTakePicture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/btn_abertura_foto"
-        android:layout_marginBottom="26dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/edtInfo" />
+        android:layout_alignStart="@+id/edtInfo"
+        android:layout_marginBottom="26dp"
+        android:text="@string/btn_abertura_foto" />
 
     <Button
         android:id="@+id/btnSendService"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/btn_abertura_enviar"
+        android:layout_alignEnd="@+id/aberturaEdtInfo"
         android:layout_alignParentBottom="true"
-        android:layout_alignEnd="@+id/aberturaEdtInfo" />
+        android:text="@string/btn_abertura_enviar" />
 </RelativeLayout>
