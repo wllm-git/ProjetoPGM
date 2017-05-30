@@ -1,21 +1,14 @@
 package projetopgm.com.br.projetopgm.abertura;
 
 
-import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
@@ -23,7 +16,6 @@ import java.util.Date;
 
 import projetopgm.com.br.projetopgm.R;
 import projetopgm.com.br.projetopgm.bancodados.ServicoDAO;
-import projetopgm.com.br.projetopgm.base.Cliente;
 import projetopgm.com.br.projetopgm.base.Foto;
 import projetopgm.com.br.projetopgm.base.Servico;
 import projetopgm.com.br.projetopgm.login.LoginHelper;

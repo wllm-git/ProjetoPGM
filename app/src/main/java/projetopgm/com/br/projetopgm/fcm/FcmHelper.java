@@ -1,5 +1,7 @@
 package projetopgm.com.br.projetopgm.fcm;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -16,12 +18,21 @@ import projetopgm.com.br.projetopgm.login.LoginHelper;
 
 public class FcmHelper extends FirebaseInstanceIdService {
 
+    private static final String PREFERENCES_FCM = "SharedPreferences";
     private static final String SERVER_URL = "www.projetopgmads.somee.com";
+
     @Override
     public void onTokenRefresh() {
         try{
             String token = FirebaseInstanceId.getInstance().getToken();
-            registrarInBackground(token);
+
+            if(token != null && token.length() > 5){
+                SharedPreferences.Editor editor = getApplicationContext()
+                        .getSharedPreferences(PREFERENCES_FCM, Context.MODE_PRIVATE)
+                        .edit();
+                editor.putString("tokenFCM", token);
+                editor.apply();
+            }
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -49,18 +60,34 @@ public class FcmHelper extends FirebaseInstanceIdService {
         conexao.connect();
         int responseCode = conexao.getResponseCode();
 
-        if(responseCode != HttpURLConnection.HTTP_OK);
+        if(responseCode != HttpURLConnection.HTTP_OK)
             throw new RuntimeException("Erro ao salvar no servidor");
     }
 
-    public void registrarInBackground(final String token){
+    public void registrarInBackground(final SharedPreferences sharedPreferences, final boolean firstLogin){
+
         new AsyncTask<Void, Void, String>() {
             @Override
             protected String doInBackground(Void... params) {
-                try {
-                    sendRegistrationToServer(token);
-                } catch (IOException e) {
-                    e.printStackTrace();
+                boolean enviado = sharedPreferences.getBoolean("enviado", firstLogin);
+                if(enviado && !firstLogin)
+                    return "";
+
+                while (true){
+                    try {
+                        Thread.sleep(2000);
+
+                        String token = sharedPreferences.getString("tokenFCM", null);
+                        if(token != null || token.length() > 5 && LoginHelper.isLogado()){
+                            sendRegistrationToServer(token);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putBoolean("enviado", true);
+                            editor.apply();
+                            break;
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
                 return "";
             }
