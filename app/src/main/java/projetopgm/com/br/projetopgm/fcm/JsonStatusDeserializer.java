@@ -28,6 +28,7 @@ public class JsonStatusDeserializer implements JsonDeserializer<Servico.Status> 
                 break;
             case 3:
                 status = Servico.Status.CANCELADO;
+                break;
             default:
                 status = Servico.Status.ABERTO;
         }

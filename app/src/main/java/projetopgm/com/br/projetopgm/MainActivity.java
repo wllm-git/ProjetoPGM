@@ -20,10 +20,15 @@ import com.google.android.gms.common.Scopes;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Scope;
 
+import java.util.Date;
+
 import projetopgm.com.br.projetopgm.abertura.AberturaServicoAcivity;
+import projetopgm.com.br.projetopgm.bancodados.ServicoDAO;
+import projetopgm.com.br.projetopgm.base.Servico;
 import projetopgm.com.br.projetopgm.listagem.ListagemActivity;
 import projetopgm.com.br.projetopgm.localizacao.MapsActivity;
 import projetopgm.com.br.projetopgm.login.LoginHelper;
+import projetopgm.com.br.projetopgm.webservice.ServicoWebTask;
 
 public class MainActivity extends AppCompatActivity
         implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener{
@@ -62,17 +67,19 @@ public class MainActivity extends AppCompatActivity
         /*
         ServicoDAO servicoDAO = new ServicoDAO(this);
         Servico servico = servicoDAO.buscarAberta(LoginHelper.usuarioLogado());
+        //Servico servico = new Servico();
 
-        //servico.setTipo(Servico.Tipo.OS);
-        //servicoDAO.salvar(servico);
+        servico.setTipo(Servico.Tipo.OS);
+        servicoDAO.salvar(servico);
 
         servico.setCliente(LoginHelper.usuarioLogado());
         servico.setDataAbertura(new Date());
-        servico.setNumero("G78");
-        servico.setDescricao("TESTE WEB SERVICE COM NOTIFICAÇÃO DO SERVIDOR.");
+        servico.setNumero("A44");
+        servico.setDescricao("TESTE WEB SERVICE ROLDÃO WILKER.");
         servico.setTipo(Servico.Tipo.ORCAMENTO);
         servico.setStatus(Servico.Status.ABERTO);
         servicoDAO.salvar(servico);
+
 
         servico.setCliente(LoginHelper.usuarioLogado());
         servico.setDataAbertura(new Date());

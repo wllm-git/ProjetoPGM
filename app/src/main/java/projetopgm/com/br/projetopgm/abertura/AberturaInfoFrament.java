@@ -32,6 +32,16 @@ public class AberturaInfoFrament extends Fragment {
         btnFoto = (Button) layout.findViewById(R.id.btnTakePicture);
 
 
+
         return layout;
+    }
+
+    public void addOnClickListener(View.OnClickListener listener) {
+        btnEnviar.setOnClickListener(listener);
+        btnFoto.setOnClickListener(listener);
+    }
+
+    public String getDescription(){
+        return descricao.getText().toString();
     }
 }

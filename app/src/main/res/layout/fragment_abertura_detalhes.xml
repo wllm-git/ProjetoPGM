@@ -27,7 +27,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_abertura_enviar"
-        android:onClick="sendService"
         android:layout_alignParentBottom="true"
         android:layout_alignEnd="@+id/aberturaEdtInfo" />
 </RelativeLayout>
