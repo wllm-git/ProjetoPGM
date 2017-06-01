@@ -4,14 +4,16 @@ package projetopgm.com.br.projetopgm.abertura;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
-import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.util.Date;
 
 import projetopgm.com.br.projetopgm.R;
@@ -34,7 +36,7 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
     AberturaInfoFrament fragmentInfo;
 
     Servico servico;
-
+    Uri outputFileUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +67,11 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
 
                 for (int x = 0; x < servico.getFotos().size();x++){
 
-                    byte [] file = servico.getFotos().get(x).getArquivo();
-                    Bitmap bitmap = BitmapFactory.decodeByteArray(file,0,file.length);
+                    //byte [] file = servico.getFotos().get(x).getArquivo();
+                    //Bitmap bitmap = BitmapFactory.decodeByteArray(file,0,file.length);
+                    String file = servico.getFotos().get(x).getArquivo();
+                    Bitmap bitmap = BitmapFactory.decodeFile(file);
+
                     fragmentFotos.addImage(bitmap);
                 }
             }
@@ -103,19 +108,33 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK){
 
+            //outputFileUri = data.getData();
+            String path = outputFileUri.getPath();
+
+            Bitmap imageBitMap = BitmapFactory.decodeFile(path);
+            fragmentFotos.addImage(imageBitMap);
+
+            Foto foto = new Foto();
+            foto.setNome(new File(path).getName());
+            foto.setArquivo(path);
+
+            /*
             Bundle extras = data.getExtras();
             Bitmap imageBitMap = (Bitmap) extras.get("data");
 
             fragmentFotos.addImage(imageBitMap);
-
-            Foto foto = new Foto();
-
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             imageBitMap.compress(Bitmap.CompressFormat.PNG,100,stream);
+
+            Foto foto = new Foto();
             foto.setArquivo(stream.toByteArray());
             foto.setNome("Foto" + new Date().getTime());
+            */
 
             servico.getFotos().add(foto);
+
+            ServicoWebTask webTask = new ServicoWebTask();
+            webTask.execute(servico);
 
         }
 
@@ -134,6 +153,10 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
 
     private void takePictureIntent(){
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        String nameImg = System.currentTimeMillis() + ".jpg";
+        File file = new File(Environment.getExternalStorageDirectory(), nameImg);
+        outputFileUri = Uri.fromFile(file);
+        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
         if(takePictureIntent.resolveActivity(getPackageManager()) != null){
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }

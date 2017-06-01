@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 public class Foto implements Serializable{
 	private Long id;
-	private byte[] arquivo;
+	private String arquivo;
 	private String nome;
 	private Servico servico;
 
@@ -21,10 +21,10 @@ public class Foto implements Serializable{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public byte[] getArquivo() {
+	public String getArquivo() {
 		return arquivo;
 	}
-	public void setArquivo(byte[] arquivo) {
+	public void setArquivo(String arquivo) {
 		this.arquivo = arquivo;
 	}
 	public Servico getServico() {

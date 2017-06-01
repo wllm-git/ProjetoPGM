@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import projetopgm.com.br.projetopgm.R;
-import projetopgm.com.br.projetopgm.base.Servico;
 
 public class AberturaInfoFrament extends Fragment {
 

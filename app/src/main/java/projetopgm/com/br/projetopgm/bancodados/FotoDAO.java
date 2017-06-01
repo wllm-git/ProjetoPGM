@@ -16,6 +16,16 @@ public class FotoDAO extends BancoDados{
         super(context);
     }
 
+    public static void createTable(SQLiteDatabase db){
+        String sql = "CREATE TABLE "+ Tabela.NOME_TABELA + " ( " +
+                Tabela.CAMPO_ID +" INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                Tabela.CAMPO_NOME + " TEXT, " +
+                Tabela.CAMPO_ARQUIVO + " TEXT NOT NULL, " +
+                Tabela.CAMPO_SERVICO_ID + " INTEGER NOT NULL, " +
+                "UNIQUE("+ Tabela.CAMPO_ARQUIVO + "));";
+        db.execSQL(sql);
+    }
+
     public void salvar(Foto foto){
         if(foto.getId() == null || foto.getId() <= 0)
             inserir(foto);
@@ -31,7 +41,7 @@ public class FotoDAO extends BancoDados{
         valores.put(Tabela.CAMPO_ARQUIVO, foto.getArquivo());
         valores.put(Tabela.CAMPO_SERVICO_ID, foto.getServico().getId());
 
-        long id = db.insert(ClienteDAO.Tabela.NOME_TABELA, null, valores);
+        long id = db.insert(Tabela.NOME_TABELA, null, valores);
         if(id != -1)
             foto.setId(id);
 
@@ -71,7 +81,7 @@ public class FotoDAO extends BancoDados{
 
             c.setId(cursor.getLong(cursor.getColumnIndex(Tabela.CAMPO_ID)));
             c.setNome(cursor.getString(cursor.getColumnIndex(Tabela.CAMPO_NOME)));
-            c.setArquivo(cursor.getBlob(cursor.getColumnIndex(Tabela.CAMPO_ARQUIVO)));
+            c.setArquivo(cursor.getString(cursor.getColumnIndex(Tabela.CAMPO_ARQUIVO)));
             c.setServico(servico);
 
             fotos.add(c);
@@ -89,15 +99,5 @@ public class FotoDAO extends BancoDados{
         public static final String CAMPO_NOME = "nome";
         public static final String CAMPO_ARQUIVO = "arquivo";
         public static final String CAMPO_SERVICO_ID = "servico_id";
-    }
-
-    public static void createTable(SQLiteDatabase db){
-        String sql = "CREATE TABLE "+ Tabela.NOME_TABELA + " ( " +
-                Tabela.CAMPO_ID +" INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                Tabela.CAMPO_NOME + " TEXT, " +
-                Tabela.CAMPO_ARQUIVO + " BLOB NOT NULL, " +
-                Tabela.CAMPO_SERVICO_ID + " INTEGER NOT NULL, " +
-                "UNIQUE("+ Tabela.CAMPO_ARQUIVO + "));";
-        db.execSQL(sql);
     }
 }

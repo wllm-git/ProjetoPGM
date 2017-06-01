@@ -11,6 +11,7 @@ public class ServicoWebTask extends AsyncTask<Servico, Void, String> {
         try{
             String cod = ServicoWebHelper.sendServicoToServer(params[0]);
             return cod;
+            //RetroClient.uploadImage(params[0].getFotos());// TODO implementar logica
         }catch (Exception ex){
             return ex.getMessage();
         }
