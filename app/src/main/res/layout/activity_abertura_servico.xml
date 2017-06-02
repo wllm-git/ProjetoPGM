@@ -31,6 +31,9 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true">
 
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
        <fragment
            android:name="projetopgm.com.br.projetopgm.abertura.AberturaFotoFragment"
@@ -44,6 +47,7 @@
 
        </fragment>
 
+    </HorizontalScrollView>
 
        <fragment
            android:name="projetopgm.com.br.projetopgm.abertura.AberturaInfoFrament"

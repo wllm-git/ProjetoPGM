@@ -7,11 +7,10 @@
 
     <EditText
         android:id="@+id/aberturaEdtInfo"
-        android:layout_width="300dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/btnTakePicture"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="48dp"
         android:hint="@string/hint_descricao_acticity_abertura" />
 
 
@@ -20,10 +19,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/edtInfo"
+        android:layout_alignStart="@+id/aberturaEdtInfo"
         android:layout_marginBottom="26dp"
-        android:background="@drawable/add_photo"
-        />
+        android:background="@drawable/add_photo" />
 
     <Button
         android:id="@+id/btnSendService"
