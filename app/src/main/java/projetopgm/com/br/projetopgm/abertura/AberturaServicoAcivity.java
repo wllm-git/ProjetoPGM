@@ -132,10 +132,6 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
             */
 
             servico.getFotos().add(foto);
-
-            ServicoWebTask webTask = new ServicoWebTask();
-            webTask.execute(servico);
-
         }
 
     }

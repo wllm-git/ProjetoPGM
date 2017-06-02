@@ -7,7 +7,7 @@ public class Foto implements Serializable{
 	private Long id;
 	private String arquivo;
 	private String nome;
-	private Servico servico;
+	private Long servicoId;
 
 	public Long getId() {
 		return id;
@@ -27,10 +27,10 @@ public class Foto implements Serializable{
 	public void setArquivo(String arquivo) {
 		this.arquivo = arquivo;
 	}
-	public Servico getServico() {
-		return servico;
+	public Long getServicoId() {
+		return servicoId;
 	}
-	public void setServico(Servico servico) {
-		this.servico = servico;
+	public void setServicoId(Long servicoId) {
+		this.servicoId = servicoId;
 	}
 }

@@ -18,9 +18,10 @@ import retrofit2.Retrofit;
 public class RetroClient {
 
     private static final String ROOT_URL = "localhost:3461";
+    static int i;
+    static boolean isUploading;
 
-
-    public static void uploadImage(List<Foto> fotos){
+    public static void uploadImages(List<Foto> fotos){
 
         if(fotos.size() == 0)
             return;
@@ -35,28 +36,43 @@ public class RetroClient {
         // Change base URL to your upload server URL.
         IRetroService service = new Retrofit.Builder().baseUrl("http://" + ROOT_URL + "/").client(client).build().create(IRetroService.class);
 
-        String filePath = fotos.get(0).getArquivo();
+        i = 0;
+        isUploading = false;
+        do {
+            if(isUploading)
+                continue;
 
-        File file = new File(filePath);
+            String filePath = fotos.get(i).getArquivo();
+            File file = new File(filePath);
 
-        RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
-        MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(), reqFile);
-        //RequestBody name = RequestBody.create(MediaType.parse("text/plain"), "upload_test");
+            RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
+            MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(), reqFile);
+            //RequestBody idFile = RequestBody.create(MediaType.parse("text/plain"), "upload_test");
 
-        Call<ResponseBody> req = service.uploadImage(body);
-        req.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if(response != null){
-
+            isUploading = true;
+            Call<ResponseBody> req = service.uploadImage(body);
+            req.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    if(response != null){
+                        i++;
+                        isUploading = false;
+                    }
+                    // Do Something
                 }
-                // Do Something
-            }
 
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                t.printStackTrace();
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    t.printStackTrace();
+                    isUploading = false;
+                }
+            });
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-        });
+        } while (i < fotos.size());
+
     }
 }

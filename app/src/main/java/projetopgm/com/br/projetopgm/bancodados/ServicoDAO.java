@@ -47,7 +47,7 @@ public class ServicoDAO extends BancoDados{
 
         if(servico.getFotos().size() > 0){
             for (Foto foto : servico.getFotos()){
-                foto.setServico(servico);
+                foto.setServicoId(servico.getId());
                 fotoDAO.salvar(foto);
             }
         }

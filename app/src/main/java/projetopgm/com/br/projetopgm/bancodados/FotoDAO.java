@@ -39,7 +39,7 @@ public class FotoDAO extends BancoDados{
         ContentValues valores = new ContentValues();
         valores.put(Tabela.CAMPO_NOME, foto.getNome());
         valores.put(Tabela.CAMPO_ARQUIVO, foto.getArquivo());
-        valores.put(Tabela.CAMPO_SERVICO_ID, foto.getServico().getId());
+        valores.put(Tabela.CAMPO_SERVICO_ID, foto.getServicoId());
 
         long id = db.insert(Tabela.NOME_TABELA, null, valores);
         if(id != -1)
@@ -82,7 +82,7 @@ public class FotoDAO extends BancoDados{
             c.setId(cursor.getLong(cursor.getColumnIndex(Tabela.CAMPO_ID)));
             c.setNome(cursor.getString(cursor.getColumnIndex(Tabela.CAMPO_NOME)));
             c.setArquivo(cursor.getString(cursor.getColumnIndex(Tabela.CAMPO_ARQUIVO)));
-            c.setServico(servico);
+            c.setServicoId(servico.getId());
 
             fotos.add(c);
         }
