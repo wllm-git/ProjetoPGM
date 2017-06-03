@@ -3,7 +3,6 @@ package projetopgm.com.br.projetopgm.abertura;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -20,6 +19,7 @@ import projetopgm.com.br.projetopgm.R;
 import projetopgm.com.br.projetopgm.bancodados.ServicoDAO;
 import projetopgm.com.br.projetopgm.base.Foto;
 import projetopgm.com.br.projetopgm.base.Servico;
+import projetopgm.com.br.projetopgm.compartilhados.FuncoesGlobais;
 import projetopgm.com.br.projetopgm.login.LoginHelper;
 import projetopgm.com.br.projetopgm.webservice.ServicoWebTask;
 
@@ -70,7 +70,7 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
                     //byte [] file = servico.getFotos().get(x).getArquivo();
                     //Bitmap bitmap = BitmapFactory.decodeByteArray(file,0,file.length);
                     String file = servico.getFotos().get(x).getArquivo();
-                    Bitmap bitmap = BitmapFactory.decodeFile(file);
+                    Bitmap bitmap = FuncoesGlobais.decodeFile(file, 96, 96);//BitmapFactory.decodeFile(file);
 
                     fragmentFotos.addImage(bitmap);
                 }
@@ -80,8 +80,6 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
                fragmentInfo.descricao.setText(savedInstanceState.getString("description"));
 
         }
-
-
     }
 
     @Override
@@ -111,7 +109,7 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
             //outputFileUri = data.getData();
             String path = outputFileUri.getPath();
 
-            Bitmap imageBitMap = BitmapFactory.decodeFile(path);
+            Bitmap imageBitMap = FuncoesGlobais.decodeFile(path, 96, 96);//BitmapFactory.decodeFile(path);
             fragmentFotos.addImage(imageBitMap);
 
             Foto foto = new Foto();
@@ -133,8 +131,9 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
 
             servico.getFotos().add(foto);
         }
-
     }
+
+
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {

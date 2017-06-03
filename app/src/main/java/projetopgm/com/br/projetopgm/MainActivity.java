@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
@@ -21,7 +22,11 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Scope;
 
 import projetopgm.com.br.projetopgm.abertura.AberturaServicoAcivity;
+import projetopgm.com.br.projetopgm.acompanhamento.AcompanhamentoServicoActivity;
+import projetopgm.com.br.projetopgm.bancodados.ServicoDAO;
+import projetopgm.com.br.projetopgm.base.Servico;
 import projetopgm.com.br.projetopgm.listagem.ListagemActivity;
+import projetopgm.com.br.projetopgm.listagem.ListagemAdapter;
 import projetopgm.com.br.projetopgm.localizacao.MapsActivity;
 import projetopgm.com.br.projetopgm.login.LoginHelper;
 
@@ -29,6 +34,7 @@ public class MainActivity extends AppCompatActivity
         implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener{
     private static final int RC_SIGN_IN = 1;
     private GoogleApiClient mGoogleApiClient;
+    private ListagemAdapter listagemAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +49,9 @@ public class MainActivity extends AppCompatActivity
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabNovo);
         fab.setOnClickListener(this);
 
+        ListView listView = (ListView)findViewById(R.id.lvwListaServicos);
+        listagemAdapter = (ListagemAdapter) listView.getAdapter();
+
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestScopes(new Scope(Scopes.PLUS_ME))
                 .requestEmail()
@@ -56,39 +65,14 @@ public class MainActivity extends AppCompatActivity
         mGoogleApiClient.connect();
         LoginHelper.init(this);
         signIn();
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
 
-        //TESTANDO 1,2,3.
-        /*
-        ServicoDAO servicoDAO = new ServicoDAO(this);
-        Servico servico = servicoDAO.buscarAberta(LoginHelper.usuarioLogado());
-        //Servico servico = new Servico();
-
-        servico.setTipo(Servico.Tipo.OS);
-        servicoDAO.salvar(servico);
-
-        servico.setCliente(LoginHelper.usuarioLogado());
-        servico.setDataAbertura(new Date());
-        servico.setNumero("A44");
-        servico.setDescricao("TESTE WEB SERVICE ROLDÃO WILKER.");
-        servico.setTipo(Servico.Tipo.ORCAMENTO);
-        servico.setStatus(Servico.Status.ABERTO);
-        servicoDAO.salvar(servico);
-
-
-        servico.setCliente(LoginHelper.usuarioLogado());
-        servico.setDataAbertura(new Date());
-        servico.setNumero("JJ78");
-        servico.setDescricao("FECHADA24");
-        servico.setTipo(Servico.Tipo.ORCAMENTO);
-        servico.setStatus(Servico.Status.CANCELADO);
-        servico.setId(null);
-        servicoDAO.salvar(servico);
-
-
-        ServicoWebTask webTask = new ServicoWebTask();
-        webTask.execute(servico);
-        */
+        if(LoginHelper.isLogado())
+            loadServicoAberto();
     }
 
     @Override
@@ -99,6 +83,11 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if(!LoginHelper.isLogado()){
+            signIn();
+            return false;
+        }
+
         int id = item.getItemId();
 
         if (id == R.id.action_listagem) {
@@ -121,8 +110,23 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onClick(View v) {
-        Intent it = new Intent(this, AberturaServicoAcivity.class);
-        startActivity(it);
+        if(!LoginHelper.isLogado()){
+            signIn();
+            return;
+        }
+
+        ServicoDAO servicoDAO = new ServicoDAO(this);
+        Servico servico = servicoDAO.buscarAberta(LoginHelper.usuarioLogado());
+
+        if(servico == null){
+            Intent it = new Intent(this, AberturaServicoAcivity.class);
+            startActivity(it);
+        }
+        else{
+            Intent it = new Intent(this, AcompanhamentoServicoActivity.class);
+            it.putExtra("servico", servico);
+            startActivity(it);
+        }
     }
 
     private void signIn() {
@@ -147,59 +151,21 @@ public class MainActivity extends AppCompatActivity
             GoogleSignInAccount acct = result.getSignInAccount();
             LoginHelper.salvarUsuario(this, acct);
             Toast.makeText(this, acct.getDisplayName() +" "+ acct.getEmail(), Toast.LENGTH_LONG).show();
+            loadServicoAberto();
         } else {
             Toast.makeText(this, "Teste " + result.isSuccess(), Toast.LENGTH_SHORT).show();
         }
     }
 
-/* TODO google People API para consultar a idade do cliente para não permitir menores de idade.
-    private static HttpTransport HTTP_TRANSPORT = AndroidHttp.newCompatibleTransport();
-    private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
-    private static final String APPLICATION_NAME = "Projeto PGM";
-    private class Teste extends AsyncTask<GoogleSignInAccount, Void, Person> {
+    private void loadServicoAberto(){
+        ServicoDAO servicoDAO = new ServicoDAO(this);
+        Servico servico = servicoDAO.buscarAberta(LoginHelper.usuarioLogado());
 
-        @Override
-        protected Person doInBackground(GoogleSignInAccount... params) {
+        listagemAdapter.getServicos().clear();
 
-            GoogleSignInAccount googleSignInAccount = params[0];
+        if(servico != null)
+            listagemAdapter.getServicos().add(servico);
 
-            Collection<String> collection = new ArrayList();
-            collection.add(Scopes.PROFILE);
-            collection.add(Scopes.PLUS_ME);
-
-            GoogleAccountCredential credential =
-                    GoogleAccountCredential.usingOAuth2(MainActivity.this, Arrays.asList(s));
-            credential.setSelectedAccount(googleSignInAccount.getAccount());
-                    //new Account(googleSignInAccount.getEmail() , "com.google"));
-            People service = new People.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential)
-                    //.setApplicationName(APPLICATION_NAME)
-                    .build();
-
-            try{
-
-
-                Person meProfile = service.people().get("people/me")
-                        //.setRequestMaskIncludeField("person.addresses")
-                        .setRequestMaskIncludeField("person.birthdays")
-                        //.setRequestMaskIncludeField("person.genders")
-                        .execute();
-                // e.g. Gender
-
-                return meProfile;
-            }catch (IOException ex){
-                ex.printStackTrace();
-            }
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Person aPerson) {
-            if(aPerson != null)
-                Toast.makeText(MainActivity.this, aPerson.getAddresses().get(0).getStreetAddress(), Toast.LENGTH_LONG).show();
-            else
-                Toast.makeText(MainActivity.this, "Teste erro", Toast.LENGTH_SHORT).show();
-        }
+        listagemAdapter.notifyDataSetChanged();
     }
-*/
 }

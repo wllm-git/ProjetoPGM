@@ -4,15 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/linear"
     tools:context="projetopgm.com.br.projetopgm.MainActivityFragment"
-    tools:showIn="@layout/activity_main"
-    android:background="@drawable/linear">
+    tools:showIn="@layout/activity_main">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <ListView
+        android:id="@+id/lvwListaServicos"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        />
+        tools:listitem="@layout/fragment_listagem_item" />
 
 </RelativeLayout>
