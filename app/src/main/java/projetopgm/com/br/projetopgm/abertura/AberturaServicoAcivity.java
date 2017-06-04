@@ -57,6 +57,8 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
 
         fragmentInfo.addOnClickListener(this);
 
+       // fragmentFotos.firstRow.setOnLongClickListener(fragmentFotos.firstRow);
+
 
 
 
@@ -200,14 +202,6 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
         webTask.execute(servico);
 
         finish();
-        //disableComponents();
-
-    }
-
-    private void disableComponents(){
-        fragmentInfo.descricao.setEnabled(false);
-        fragmentInfo.btnFoto.setEnabled(false);
-        fragmentInfo.btnEnviar.setEnabled(false);
 
 
     }

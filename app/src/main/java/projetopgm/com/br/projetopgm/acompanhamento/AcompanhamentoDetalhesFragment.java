@@ -2,5 +2,5 @@ package projetopgm.com.br.projetopgm.acompanhamento;
 
 
 
-public class AcompanhamentoFragment {
+public class AcompanhamentoDetalhesFragment {
 }
