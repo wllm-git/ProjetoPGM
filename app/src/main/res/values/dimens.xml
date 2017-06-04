@@ -4,4 +4,5 @@
     <dimen name="margin_item">5dp</dimen>
     <dimen name="font_valr">25dp</dimen>
     <dimen name="font_status">25dp</dimen>
+    <dimen name="tabs_height">20dp</dimen>
 </resources>

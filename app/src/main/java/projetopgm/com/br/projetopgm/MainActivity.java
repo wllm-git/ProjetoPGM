@@ -4,12 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
@@ -35,6 +36,8 @@ public class MainActivity extends AppCompatActivity
     private static final int RC_SIGN_IN = 1;
     private GoogleApiClient mGoogleApiClient;
     private ListagemAdapter listagemAdapter;
+    private ServicoPagerAdapter servicoPagerAdapter;
+    private ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +52,14 @@ public class MainActivity extends AppCompatActivity
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabNovo);
         fab.setOnClickListener(this);
 
-        ListView listView = (ListView)findViewById(R.id.lvwListaServicos);
-        listagemAdapter = (ListagemAdapter) listView.getAdapter();
+        servicoPagerAdapter = new ServicoPagerAdapter(getSupportFragmentManager());
+
+        // Set up the ViewPager with the sections adapter.
+        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager.setAdapter(servicoPagerAdapter);
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(mViewPager);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestScopes(new Scope(Scopes.PLUS_ME))
@@ -69,10 +78,10 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onStart() {
-        super.onStart();
-
         if(LoginHelper.isLogado())
             loadServicoAberto();
+
+        super.onStart();
     }
 
     @Override
@@ -161,11 +170,6 @@ public class MainActivity extends AppCompatActivity
         ServicoDAO servicoDAO = new ServicoDAO(this);
         Servico servico = servicoDAO.buscarAberta(LoginHelper.usuarioLogado());
 
-        listagemAdapter.getServicos().clear();
-
-        if(servico != null)
-            listagemAdapter.getServicos().add(servico);
-
-        listagemAdapter.notifyDataSetChanged();
+        servicoPagerAdapter.adicionarServico(servico);
     }
 }

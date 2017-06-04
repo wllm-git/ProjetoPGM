@@ -173,10 +173,10 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
             return;
         }
 
-//        if(servico.getFotos().isEmpty()) {
-//            Toast.makeText(this, "É necessário enviar no minimo uma foto do veículo", Toast.LENGTH_SHORT).show();
-//            return;
-//        }
+        if(servico.getFotos().isEmpty()) {
+            Toast.makeText(this, "É necessário enviar no minimo uma foto do veículo", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         servico.setStatus(Servico.Status.ABERTO);
         servico.setTipo(Servico.Tipo.ORCAMENTO);
@@ -190,7 +190,8 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
         ServicoWebTask webTask = new ServicoWebTask();
         webTask.execute(servico);
 
-        disableComponents();
+        finish();
+        //disableComponents();
 
     }
 
