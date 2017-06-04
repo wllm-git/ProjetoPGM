@@ -19,7 +19,7 @@ import projetopgm.com.br.projetopgm.login.LoginHelper;
 public class FcmHelper extends FirebaseInstanceIdService {
 
     private static final String PREFERENCES_FCM = "SharedPreferences";
-    private static final String SERVER_URL = "localhost:3461";//"www.projetopgmads.somee.com"
+    private static final String SERVER_URL = "www.projetopgmads.somee.com";// "localhost:3461"
 
     @Override
     public void onTokenRefresh() {

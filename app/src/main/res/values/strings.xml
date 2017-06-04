@@ -8,4 +8,9 @@
     <string name="btn_abertura_foto">Tirar Foto</string>
     <string name="btn_abertura_enviar">Enviar</string>
     <string name="texto_notificacao">Serviço</string>
+    <string name="tab_title_info">Info</string>
+    <string name="tab_title_foto">Fotos</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

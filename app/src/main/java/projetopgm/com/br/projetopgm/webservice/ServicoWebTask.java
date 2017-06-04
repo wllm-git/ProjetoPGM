@@ -12,7 +12,8 @@ public class ServicoWebTask extends AsyncTask<Servico, Void, String> {
     protected String doInBackground(Servico... params) {
         try{
             String cod = ServicoWebHelper.sendServicoToServer(params[0]);
-            uploadImages(params[0].getFotos());
+            if(params[0].getStatus() == Servico.Status.ABERTO)
+                uploadImages(params[0].getFotos());
             return cod;
         }catch (Exception ex){
             return ex.getMessage();

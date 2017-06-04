@@ -6,12 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
 import projetopgm.com.br.projetopgm.R;
 import projetopgm.com.br.projetopgm.base.Servico;
@@ -25,6 +23,12 @@ public class ListagemAdapter extends BaseAdapter {
 
     public ListagemAdapter(Context context, ArrayList<Servico> servicos) {
         this.servicos = servicos;
+        this.context = context;
+        this.sdf = new SimpleDateFormat("dd/MM/yyyy");
+    }
+
+    public ListagemAdapter(Context context) {
+        this.servicos = new ArrayList<>();
         this.context = context;
         this.sdf = new SimpleDateFormat("dd/MM/yyyy");
     }

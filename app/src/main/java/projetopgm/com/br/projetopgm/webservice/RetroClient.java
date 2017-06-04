@@ -17,7 +17,7 @@ import retrofit2.Retrofit;
 
 public class RetroClient {
 
-    private static final String ROOT_URL = "localhost:3461";
+    private static final String ROOT_URL = "www.projetopgmads.somee.com";// "localhost:3461"
     static int i;
     static boolean isUploading;
 

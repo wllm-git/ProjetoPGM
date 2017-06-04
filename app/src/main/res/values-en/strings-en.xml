@@ -9,4 +9,6 @@
     <string name="btn_abertura_foto">Take a Picture</string>
     <string name="btn_abertura_enviar">To Send</string>
     <string name="texto_notificacao">Service</string>
+    <string name="tab_title_info">Info</string>
+    <string name="tab_title_foto">Images</string>
 </resources>
