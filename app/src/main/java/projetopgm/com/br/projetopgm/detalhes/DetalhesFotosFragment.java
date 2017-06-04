@@ -2,16 +2,12 @@ package projetopgm.com.br.projetopgm.detalhes;
 
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.NotificationCompatBase;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import projetopgm.com.br.projetopgm.R;
 import projetopgm.com.br.projetopgm.base.Servico;
