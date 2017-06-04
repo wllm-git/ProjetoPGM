@@ -11,6 +11,7 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.io.File;
@@ -35,6 +36,8 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
     AberturaFotoFragment fragmentFotos;
     AberturaInfoFrament fragmentInfo;
 
+    LinearLayout layout;
+
     Servico servico;
     Uri outputFileUri;
 
@@ -51,7 +54,11 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
 
         fragmentFotos = (AberturaFotoFragment) getSupportFragmentManager().findFragmentById(R.id.framentAberturaFotos);
         fragmentInfo = (AberturaInfoFrament) getSupportFragmentManager().findFragmentById(R.id.framentAberturaInfo);
+
         fragmentInfo.addOnClickListener(this);
+
+
+
 
 //        btnTakePicture = (Button) findViewById(R.id.btnTakePicture);
 //        btnTakePicture.setOnClickListener(this);
@@ -83,6 +90,8 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
 
 
     }
+
+
 
     @Override
     public void onClick(View v) {
@@ -210,6 +219,8 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
 
         return "";
     }
+
+
 
 }
 
