@@ -45,25 +45,23 @@ public class DetalhesFotosFragment extends Fragment {
 
         switch (servico.getFotos().size()){
             case 6:
-                atualizarImageView(R.id.imagem6, viewGroup);
+                atualizarImageView(R.id.imagem6, viewGroup,5);
             case 5:
-                atualizarImageView(R.id.imagem5, viewGroup);
+                atualizarImageView(R.id.imagem5, viewGroup,4);
             case 4:
-                atualizarImageView(R.id.imagem4, viewGroup);
+                atualizarImageView(R.id.imagem4, viewGroup,3);
             case 3:
-                atualizarImageView(R.id.imagem3, viewGroup);
+                atualizarImageView(R.id.imagem3, viewGroup,2);
             case 2:
-                atualizarImageView(R.id.imagem2, viewGroup);
+                atualizarImageView(R.id.imagem2, viewGroup,1);
             case 1:
-                atualizarImageView(R.id.imagem1, viewGroup);
+                atualizarImageView(R.id.imagem1, viewGroup,0);
         }
     }
 
-    private void atualizarImageView(int id, View viewGroup){
+    private void atualizarImageView(int id, View viewGroup, int i){
         ImageView imageView = (ImageView) viewGroup.findViewById(id);
-        int x = imageView.getDrawable().getMinimumWidth();
-        int y = imageView.getDrawable().getMinimumHeight();
-        String path = servico.getFotos().get(0).getArquivo();
+        String path = servico.getFotos().get(i).getArquivo();
         imageView.setImageBitmap(FuncoesGlobais.decodeFile(path, 100, 100));
     }
 }
