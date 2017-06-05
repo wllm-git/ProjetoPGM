@@ -20,28 +20,20 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <fragment
-        android:name="projetopgm.com.br.projetopgm.acompanhamento.AcompanhamentoDetalhesFragment"
-        tools:layout="@layout/fragment_acompanhamento_detalhes"
-        android:id="@+id/framentAcompanhamentoInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_centerHorizontal="true">
 
-    </fragment>
 
-    <fragment
-        android:name="projetopgm.com.br.projetopgm.acompanhamento.AcompanhamentoFotoFragment"
-        tools:layout="@layout/fragment_abertura_fotos"
-        android:id="@+id/framentAcompanhamentoFotos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/framentAcompanhamentoInfo"
-        android:layout_centerHorizontal="true">
+        <fragment
+            android:name="projetopgm.com.br.projetopgm.acompanhamento.AcompanhamentoDetalhesFragment"
+            tools:layout="@layout/fragment_acompanhamento_detalhes"
+            android:id="@+id/framentAcompanhamentoInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_centerHorizontal="true">
 
-    </fragment>
+        </fragment>
+
+
 
     <fragment
         android:name="projetopgm.com.br.projetopgm.acompanhamento.AcompanhamentoFotoFragment"
@@ -49,7 +41,7 @@
         android:id="@+id/framentAcompanhamentoBotoes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/framentAcompanhamentoFotos"
+        android:layout_below="@+id/framentAcompanhamentoInfo"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp">
 

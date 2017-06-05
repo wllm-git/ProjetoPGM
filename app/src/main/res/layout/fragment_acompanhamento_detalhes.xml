@@ -3,25 +3,120 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <TextView
-        android:id="@+id/textView"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="51dp"
-        android:layout_marginTop="89dp"
-        android:text="Tempo do Serviço" />
+        android:id="@+id/servicoinfo">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/textView"
-        android:layout_marginEnd="67dp"
-        android:text="Preço do Serviço" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearNumeroServico"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="19dp"
+                android:layout_marginTop="36dp"
+                android:text="Número"
+                android:layout_alignParentTop="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView"
+                android:text="12003904"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearPrecoServico"
+            android:orientation="vertical"
+            android:layout_marginTop="35dp"
+            android:layout_marginLeft="10dp">
+
+        <TextView
+            android:id="@+id/precoServico"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Valor"
+            android:layout_alignBaseline="@+id/linearNumeroServico"
+            android:layout_alignBottom="@+id/linearNumeroServico"
+            android:layout_toEndOf="@+id/linearNumeroServico"
+            android:layout_marginStart="29dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/percoServico"
+                android:text="R$ 20,00"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="15dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearStatusServico"
+            android:orientation="vertical"
+            android:layout_marginTop="35dp"
+            android:layout_marginLeft="30dp">
+
+            <TextView
+                android:id="@+id/statusServico"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Status"
+                android:layout_alignBaseline="@+id/linearNumeroServico"
+                android:layout_alignBottom="@+id/linearNumeroServico"
+                android:layout_toEndOf="@+id/linearNumeroServico"
+                android:layout_marginLeft="4dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/percoServico"
+                android:text="ABERTO"
+                android:layout_marginTop="10dp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearDataAberturaServico"
+            android:orientation="vertical"
+            android:layout_marginTop="35dp"
+            android:layout_marginLeft="20dp">
+
+            <TextView
+                android:id="@+id/dataAberturaServico"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Data Abertura"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/percoServico"
+                android:text="22/05/2017"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="8dp"
+                />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
 
     <EditText
         android:id="@+id/editText3"
@@ -29,9 +124,9 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textMultiLine"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="102dp"
-        android:hint="Descrição do problemas. Esse campo será desabilitado para edição pelo usuário"/>
+        android:layout_marginTop="28dp"
+        android:hint="Descrição do problema. Esse campo será desabilitado"
+        android:layout_below="@+id/servicoinfo"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
