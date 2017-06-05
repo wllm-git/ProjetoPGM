@@ -58,14 +58,18 @@ public class AcompanhamentoServicoActivity extends AppCompatActivity
         fragmentDetalhes.setDescricaoProblema(servico.getDescricao());
 
 
-        for (int x = 0; x < servico.getFotos().size();x++){
 
-            //byte [] file = servico.getFotos().get(x).getArquivo();
-            //Bitmap bitmap = BitmapFactory.decodeByteArray(file,0,file.length);
-            String file = servico.getFotos().get(x).getArquivo();
-            Bitmap bitmap = FuncoesGlobais.decodeFile(file, 96, 96);//BitmapFactory.decodeFile(file);
+        if (FuncoesGlobais.isPortrait(this)) {
 
-            fragmentFotos.addImage(bitmap);
+            for (int x = 0; x < servico.getFotos().size(); x++) {
+
+                //byte [] file = servico.getFotos().get(x).getArquivo();
+                //Bitmap bitmap = BitmapFactory.decodeByteArray(file,0,file.length);
+                String file = servico.getFotos().get(x).getArquivo();
+                Bitmap bitmap = FuncoesGlobais.decodeFile(file, 96, 96);//BitmapFactory.decodeFile(file);
+
+                fragmentFotos.addImage(bitmap);
+            }
         }
 
     }
