@@ -16,6 +16,9 @@ public class AcompanhamentoServicoActivity extends AppCompatActivity
         implements View.OnClickListener{
     private Servico servico;
 
+    AcompanhamentoFotoFragment fragmentFotos;
+    AcompanhamentoDetalhesFragment fragmentDetalhes;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +34,9 @@ public class AcompanhamentoServicoActivity extends AppCompatActivity
 
         Intent it = getIntent();
         servico = (Servico) it.getSerializableExtra("servico");
+
+        fragmentDetalhes = (AcompanhamentoDetalhesFragment) getSupportFragmentManager().findFragmentById(R.id.framentAcompanhamentoInfo);
+        fragmentFotos = (AcompanhamentoFotoFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentAcompanhamentoFotos);
     }
 
     @Override
