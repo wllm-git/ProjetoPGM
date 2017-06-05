@@ -23,8 +23,8 @@ public class MainActivityFotosFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        if(savedInstanceState != null)
-            servico = (Servico) savedInstanceState.getSerializable("servico");
+        servico = (Servico) getActivity().getIntent().getSerializableExtra("servico");
+
         return inflater.inflate(R.layout.fragment_main_fotos, container, false);
     }
 
@@ -33,19 +33,6 @@ public class MainActivityFotosFragment extends Fragment {
         super.onStart();
         if(servico != null)
             atualizarFotos();
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        if(servico != null)
-            outState.putSerializable("servico", servico);
-    }
-
-    public void adicionarFotos(Servico servico){
-        if(servico != null)
-            this.servico = servico;
-        else
-            this.servico = null;
     }
 
     private void atualizarFotos(){

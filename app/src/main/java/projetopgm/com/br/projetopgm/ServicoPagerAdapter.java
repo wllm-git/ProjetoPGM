@@ -4,11 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import projetopgm.com.br.projetopgm.base.Servico;
-
 public class ServicoPagerAdapter extends FragmentPagerAdapter {
 
-    private Servico servico;
     private MainActivityFragment mainActivityFragment;
     private MainActivityFotosFragment mainActivityFotosFragment;
 
@@ -18,16 +15,11 @@ public class ServicoPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        if(position == 0){
-            mainActivityFragment = new MainActivityFragment();
-            mainActivityFragment.adicionarServico(servico);
-            return mainActivityFragment;
-        }
-        else{
-            mainActivityFotosFragment = new MainActivityFotosFragment();
-            mainActivityFotosFragment.adicionarFotos(servico);
-            return mainActivityFotosFragment;
-        }
+        if(position == 0)
+            return new MainActivityFragment();
+        else
+            return new MainActivityFotosFragment();
+
     }
 
     @Override
@@ -44,17 +36,5 @@ public class ServicoPagerAdapter extends FragmentPagerAdapter {
                 return "fotos";//Resources.getSystem().getString(R.string.tab_title_foto);
         }
         return null;
-    }
-
-    public void adicionarServico(Servico servico){
-        this.servico = servico;
-
-        if(servico == null)
-            return;
-
-        if(mainActivityFotosFragment != null)
-            mainActivityFotosFragment.adicionarFotos(servico);
-        if(mainActivityFragment != null)
-            mainActivityFragment.adicionarServico(servico);
     }
 }
