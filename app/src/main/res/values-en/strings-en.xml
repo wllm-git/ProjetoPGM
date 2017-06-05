@@ -15,4 +15,7 @@
     <string name="title_data_fechamento">Closed</string>
     <string name="title_numero">Number</string>
     <string name="title_valor_avaliado">Estimate</string>
+    <string name="menu_fechadas">Closed</string>
+    <string name="menu_localizacao">Location</string>
+
 </resources>

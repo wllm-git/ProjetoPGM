@@ -5,12 +5,12 @@
     <item
         android:id="@+id/action_listagem"
         android:orderInCategory="100"
-        android:title="Fechadas"
+        android:title="@string/menu_fechadas"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/action_localizacao"
         android:orderInCategory="100"
-        android:title="Localização"
+        android:title="@string/menu_localizacao"
         app:showAsAction="never" />
 </menu>

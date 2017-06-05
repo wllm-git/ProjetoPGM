@@ -14,6 +14,8 @@
     <string name="title_data_fechamento">Fechamento</string>
     <string name="title_numero">Número</string>
     <string name="title_valor_avaliado">Avaliação</string>
+    <string name="menu_fechadas">Fechadas</string>
+    <string name="menu_localizacao">Localização</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
