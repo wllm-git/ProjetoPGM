@@ -8,10 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 import projetopgm.com.br.projetopgm.R;
 import projetopgm.com.br.projetopgm.abertura.AberturaFotoFragment;
@@ -22,10 +19,9 @@ import projetopgm.com.br.projetopgm.webservice.ServicoWebTask;
 
 public class AcompanhamentoServicoActivity extends AppCompatActivity
         implements View.OnClickListener{
-    private Servico servico;
-
     AberturaFotoFragment fragmentFotos;
     AcompanhamentoDetalhesFragment fragmentDetalhes;
+    private Servico servico;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,8 +80,7 @@ public class AcompanhamentoServicoActivity extends AppCompatActivity
                 }
                 break;
             case R.id.fabCancelar:
-                if(servico != null && servico.getTipo()== Servico.Tipo.ORCAMENTO
-                        && servico.getStatus()== Servico.Status.ANDAMENTO){
+                if(servico != null && servico.getTipo()== Servico.Tipo.ORCAMENTO){
                     ServicoDAO servicoDAO = new ServicoDAO(this);
                     servico.setStatus(Servico.Status.CANCELADO);
                     servicoDAO.salvar(servico);
