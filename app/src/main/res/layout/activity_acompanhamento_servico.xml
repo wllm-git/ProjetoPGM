@@ -32,14 +32,14 @@
     </fragment>
 
     <fragment
-        android:name="projetopgm.com.br.projetopgm.acompanhamento.AcompanhamentoFotoFragment"
+        android:name="projetopgm.com.br.projetopgm.abertura.AberturaFotoFragment"
         tools:layout="@layout/fragment_abertura_fotos"
-        android:id="@+id/fragmentAcompanhamentoFotos"
+        android:id="@+id/fragmentAberturaFotos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="50dp"
-        android:layout_below="@+id/framentAcompanhamentoInfo"
+        android:layout_below="@+id/fragmentAcompanhamentoInfo"
         android:layout_centerHorizontal="true">
 
     </fragment>
@@ -48,7 +48,7 @@
         android:id="@+id/fabCancelar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/framentAcompanhamentoFotos"
+        android:layout_below="@+id/fragmentAberturaFotos"
         android:layout_marginBottom="25dp"
         android:layout_marginStart="59dp"
         android:clickable="true"
@@ -63,7 +63,7 @@
         android:clickable="true"
         app:fabSize="mini"
         app:srcCompat="@mipmap/add_launcher_rounds"
-        android:layout_below="@+id/framentAcompanhamentoFotos"
+        android:layout_below="@+id/fragmentAberturaFotos"
         android:layout_alignParentEnd="true" />
 
 

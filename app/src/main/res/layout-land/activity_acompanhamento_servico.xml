@@ -25,11 +25,11 @@
         <fragment
             android:name="projetopgm.com.br.projetopgm.acompanhamento.AcompanhamentoDetalhesFragment"
             tools:layout="@layout/fragment_acompanhamento_detalhes"
-            android:id="@+id/framentAcompanhamentoInfo"
+            android:id="@+id/fragmentAcompanhamentoInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="30dp"
             android:layout_centerHorizontal="true">
 
         </fragment>
@@ -40,7 +40,7 @@
         android:id="@+id/fabCancelar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/framentAcompanhamentoInfo"
+        android:layout_below="@+id/fragmentAcompanhamentoInfo"
         android:layout_marginBottom="25dp"
         android:layout_marginStart="59dp"
         android:clickable="true"
@@ -55,7 +55,7 @@
         android:clickable="true"
         app:fabSize="mini"
         app:srcCompat="@mipmap/add_launcher_rounds"
-        android:layout_below="@+id/framentAcompanhamentoInfo"
+        android:layout_below="@+id/fragmentAcompanhamentoInfo"
         android:layout_alignParentEnd="true" />
 
 

@@ -3,7 +3,12 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+
+    <HorizontalScrollView
+        android:id="@+id/scrollHorizontalAcompanhamento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/servicoinfo">
@@ -15,7 +20,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/numeroServicoLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="19dp"
@@ -24,12 +29,13 @@
                 android:layout_alignParentTop="true" />
 
             <TextView
+                android:id="@+id/numeroServico"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/textView"
+                android:layout_below="@+id/numeroServicoLabel"
                 android:text="12003904"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="20dp"/>
 
         </LinearLayout>
 
@@ -42,7 +48,7 @@
             android:layout_marginLeft="10dp">
 
         <TextView
-            android:id="@+id/precoServico"
+            android:id="@+id/precoServicoLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Valor"
@@ -52,9 +58,10 @@
             android:layout_marginStart="29dp" />
 
             <TextView
+                android:id="@+id/precoServico"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/percoServico"
+                android:layout_below="@+id/percoServicoLabel"
                 android:text="R$ 20,00"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="15dp"/>
@@ -70,7 +77,7 @@
             android:layout_marginLeft="30dp">
 
             <TextView
-                android:id="@+id/statusServico"
+                android:id="@+id/statusServicoLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Status"
@@ -80,9 +87,10 @@
                 android:layout_marginLeft="4dp"/>
 
             <TextView
+                android:id="@+id/statusServico"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/percoServico"
+                android:layout_below="@+id/statusServicoLabel"
                 android:text="ABERTO"
                 android:layout_marginTop="10dp"
                 />
@@ -98,16 +106,17 @@
             android:layout_marginLeft="20dp">
 
             <TextView
-                android:id="@+id/dataAberturaServico"
+                android:id="@+id/dataAberturaServicoLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Data Abertura"
                 />
 
             <TextView
+                android:id="@+id/dataAberturaServico"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/percoServico"
+                android:layout_below="@+id/dataAberturaServicoLabel"
                 android:text="22/05/2017"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="8dp"
@@ -117,16 +126,17 @@
 
 
     </LinearLayout>
+    </HorizontalScrollView>
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/problemDescription"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textMultiLine"
         android:layout_marginTop="28dp"
         android:hint="Descrição do problema. Esse campo será desabilitado"
-        android:layout_below="@+id/servicoinfo"
+        android:layout_below="@+id/scrollHorizontalAcompanhamento"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
