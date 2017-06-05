@@ -38,11 +38,16 @@ public class DetalhesInfoFragment extends Fragment {
             textDataFechada.setText(sdf.format(servico.getDataFechamento()));
 
             TextView textValor = (TextView) fragmentDetalhes.findViewById(R.id.tvwValor);
-            textValor.setText(servico.getPrecoFinal().toString());
+            textValor.setText(String.valueOf(servico.getPrecoFinal()));
 
             TextView textStatus = (TextView) fragmentDetalhes.findViewById(R.id.tvwStatus);
             textStatus.setText(servico.getStatus().toString());
 
+            TextView precoAvaliado = (TextView) fragmentDetalhes.findViewById(R.id.tvwPrecoAvaliado);
+            precoAvaliado.setText(String.valueOf(servico.getPrecoAvaliado()));
+
+            TextView numero = (TextView) fragmentDetalhes.findViewById(R.id.tvwNumero);
+            numero.setText(String.valueOf(servico.getNumero()));
 
         }
 

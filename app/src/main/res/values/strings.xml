@@ -10,6 +10,10 @@
     <string name="texto_notificacao">Serviço</string>
     <string name="tab_title_info">Info</string>
     <string name="tab_title_foto">Fotos</string>
+    <string name="title_data_abertura">Abertura</string>
+    <string name="title_data_fechamento">Fechamento</string>
+    <string name="title_numero">Número</string>
+    <string name="title_valor_avaliado">Avaliação</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

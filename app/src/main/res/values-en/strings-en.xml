@@ -11,4 +11,8 @@
     <string name="texto_notificacao">Service</string>
     <string name="tab_title_info">Info</string>
     <string name="tab_title_foto">Images</string>
+    <string name="title_data_abertura">Created</string>
+    <string name="title_data_fechamento">Closed</string>
+    <string name="title_numero">Number</string>
+    <string name="title_valor_avaliado">Estimate</string>
 </resources>
