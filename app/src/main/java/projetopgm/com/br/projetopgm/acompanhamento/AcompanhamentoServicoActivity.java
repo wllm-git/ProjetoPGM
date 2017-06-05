@@ -26,8 +26,11 @@ public class AcompanhamentoServicoActivity extends AppCompatActivity
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.mipmap.ic_launcher_round);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabAceitar);
-        fab.setOnClickListener(this);
+        FloatingActionButton fabAceitar = (FloatingActionButton) findViewById(R.id.fabAceitar);
+        fabAceitar.setOnClickListener(this);
+
+        FloatingActionButton fabCancelar = (FloatingActionButton) findViewById(R.id.fabCancelar);
+        fabCancelar.setOnClickListener(this);
 
         Intent it = getIntent();
         servico = (Servico) it.getSerializableExtra("servico");
@@ -35,13 +38,28 @@ public class AcompanhamentoServicoActivity extends AppCompatActivity
 
     @Override
     public void onClick(View v) {
-        if(servico != null && servico.getTipo()== Servico.Tipo.ORCAMENTO
-                && servico.getStatus()== Servico.Status.ANDAMENTO){
-            ServicoDAO servicoDAO = new ServicoDAO(this);
-            servico.setTipo(Servico.Tipo.OS);
-            servicoDAO.salvar(servico);
-            new ServicoWebTask().execute(servico);
-            finish();
+        switch (v.getId()){
+            case R.id.fabAceitar:
+                if(servico != null && servico.getTipo()== Servico.Tipo.ORCAMENTO
+                        && servico.getStatus()== Servico.Status.ANDAMENTO){
+                    ServicoDAO servicoDAO = new ServicoDAO(this);
+                    servico.setTipo(Servico.Tipo.OS);
+                    servicoDAO.salvar(servico);
+                    new ServicoWebTask().execute(servico);
+                    finish();
+                }
+                break;
+            case R.id.fabCancelar:
+                if(servico != null && servico.getTipo()== Servico.Tipo.ORCAMENTO
+                        && servico.getStatus()== Servico.Status.ANDAMENTO){
+                    ServicoDAO servicoDAO = new ServicoDAO(this);
+                    servico.setStatus(Servico.Status.CANCELADO);
+                    servicoDAO.salvar(servico);
+                    new ServicoWebTask().execute(servico);
+                    finish();
+                }
+                break;
         }
+
     }
 }

@@ -21,31 +21,31 @@
     </android.support.design.widget.AppBarLayout>
 
     <fragment
-        android:name="projetopgm.com.br.projetopgm.acompanhamento.AcompanhamentoDetalhesFragment"
-        tools:layout="@layout/fragment_acompanhamento_detalhes"
         android:id="@+id/framentAcompanhamentoInfo"
+        android:name="projetopgm.com.br.projetopgm.acompanhamento.AcompanhamentoDetalhesFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:layout_centerHorizontal="true">
+        tools:layout="@layout/fragment_acompanhamento_detalhes">
 
     </fragment>
 
     <fragment
-        android:name="projetopgm.com.br.projetopgm.acompanhamento.AcompanhamentoFotoFragment"
-        tools:layout="@layout/fragment_abertura_fotos"
         android:id="@+id/framentAcompanhamentoFotos"
+        android:name="projetopgm.com.br.projetopgm.acompanhamento.AcompanhamentoFotoFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="50dp"
         android:layout_below="@+id/framentAcompanhamentoInfo"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
+        android:layout_marginTop="20dp"
+        tools:layout="@layout/fragment_abertura_fotos">
 
     </fragment>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton2"
+        android:id="@+id/fabCancelar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/framentAcompanhamentoFotos"
@@ -59,12 +59,12 @@
         android:id="@+id/fabAceitar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/framentAcompanhamentoFotos"
         android:layout_marginEnd="60dp"
         android:clickable="true"
         app:fabSize="mini"
-        app:srcCompat="@mipmap/add_launcher_rounds"
-        android:layout_below="@+id/framentAcompanhamentoFotos"
-        android:layout_alignParentEnd="true" />
+        app:srcCompat="@mipmap/add_launcher_rounds" />
 
 
 </RelativeLayout>
