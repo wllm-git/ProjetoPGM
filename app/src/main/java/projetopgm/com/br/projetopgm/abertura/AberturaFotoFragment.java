@@ -10,12 +10,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import projetopgm.com.br.projetopgm.R;
+import projetopgm.com.br.projetopgm.compartilhados.FuncoesGlobais;
 
 public class AberturaFotoFragment extends Fragment {
 
@@ -37,6 +36,13 @@ public class AberturaFotoFragment extends Fragment {
 
         firstRow = (LinearLayout) layout.findViewById(R.id.row1);
         secondRow = (LinearLayout) layout.findViewById(R.id.row2);
+
+        LinearLayout imagesContainer = (LinearLayout) layout.findViewById(R.id.imagesContainer);
+        if (!FuncoesGlobais.isPortrait(getActivity())) {
+            imagesContainer.setOrientation(LinearLayout.HORIZONTAL);
+            firstRow.setOrientation(LinearLayout.VERTICAL);
+            secondRow.setOrientation(LinearLayout.VERTICAL);
+        }
 
         return layout;
     }
