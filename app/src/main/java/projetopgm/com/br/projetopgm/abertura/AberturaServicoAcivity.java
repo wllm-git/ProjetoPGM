@@ -166,7 +166,7 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
         servico.setStatus(Servico.Status.ABERTO);
         servico.setTipo(Servico.Tipo.ORCAMENTO);
         servico.setDataAbertura(new Date());
-        servico.setNumero(String.valueOf(new Date().getTime()));
+        servico.setNumero(String.valueOf(new Date().getTime()).substring(0,5));
 
         dao.salvar(servico);
 
