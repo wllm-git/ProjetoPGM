@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/linear">
 
     <TextView
         android:id="@+id/tvwValor"
@@ -47,8 +48,7 @@
                 android:id="@+id/tvwNumero"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="12003904"/>
+                android:layout_marginTop="10dp"/>
 
         </LinearLayout>
 
@@ -71,8 +71,7 @@
                 android:id="@+id/tvwPrecoAvaliado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="R$ 20,00"/>
+                android:layout_marginTop="10dp"/>
 
         </LinearLayout>
 
@@ -95,8 +94,7 @@
                 android:id="@+id/tvwDataAberta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="22/05/2017"/>
+                android:layout_marginTop="10dp"/>
 
         </LinearLayout>
 
@@ -119,8 +117,7 @@
                 android:id="@+id/tvwDataFechada"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="22/05/2017"/>
+                android:layout_marginTop="10dp"/>
 
         </LinearLayout>
     </LinearLayout>
