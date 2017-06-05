@@ -169,7 +169,6 @@ public class MainActivity extends AppCompatActivity
     private void loadServicoAberto(){
         ServicoDAO servicoDAO = new ServicoDAO(this);
         Servico servico = servicoDAO.buscarAberta(LoginHelper.usuarioLogado());
-
-        servicoPagerAdapter.adicionarServico(servico);
+        getIntent().putExtra("servico", servico);
     }
 }

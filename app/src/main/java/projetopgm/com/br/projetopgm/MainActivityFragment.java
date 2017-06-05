@@ -21,8 +21,7 @@ public class MainActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        if(savedInstanceState != null)
-            servico = (Servico) savedInstanceState.getSerializable("servico");
+        servico = (Servico) getActivity().getIntent().getSerializableExtra("servico");
 
         View fragmentListagem = inflater.inflate(R.layout.fragment_main, container, false);
 
@@ -39,16 +38,6 @@ public class MainActivityFragment extends Fragment {
 
         if(servico != null)
             atualizarInfo();
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        if(servico != null)
-            outState.putSerializable("servico", servico);
-    }
-
-    public void adicionarServico(Servico servico){
-        this.servico = servico;
     }
 
     private void atualizarInfo(){
