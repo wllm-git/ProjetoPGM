@@ -29,10 +29,6 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
-
-//    Button btnTakePicture;
-//    Button btnSendService;
-
     AberturaFotoFragment fragmentFotos;
     AberturaInfoFrament fragmentInfo;
 
@@ -52,19 +48,10 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
         getSupportActionBar().setHomeAsUpIndicator(R.mipmap.ic_launcher_round);
 
 
-        fragmentFotos = (AberturaFotoFragment) getSupportFragmentManager().findFragmentById(R.id.framentAberturaFotos);
-        fragmentInfo = (AberturaInfoFrament) getSupportFragmentManager().findFragmentById(R.id.framentAberturaInfo);
+        fragmentFotos = (AberturaFotoFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentAberturaFotos);
+        fragmentInfo = (AberturaInfoFrament) getSupportFragmentManager().findFragmentById(R.id.fragmentAberturaInfo);
 
         fragmentInfo.addOnClickListener(this);
-
-       // fragmentFotos.firstRow.setOnLongClickListener(fragmentFotos.firstRow);
-
-
-
-
-//        btnTakePicture = (Button) findViewById(R.id.btnTakePicture);
-//        btnTakePicture.setOnClickListener(this);
-//        btnSendService = (Button) findViewById(R.id.btnSendService);
 
         servico = new Servico();
 
@@ -126,19 +113,6 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
             Foto foto = new Foto();
             foto.setNome(new File(path).getName());
             foto.setArquivo(path);
-
-            /*
-            Bundle extras = data.getExtras();
-            Bitmap imageBitMap = (Bitmap) extras.get("data");
-
-            fragmentFotos.addImage(imageBitMap);
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            imageBitMap.compress(Bitmap.CompressFormat.PNG,100,stream);
-
-            Foto foto = new Foto();
-            foto.setArquivo(stream.toByteArray());
-            foto.setNome("Foto" + new Date().getTime());
-            */
 
             servico.getFotos().add(foto);
         }
@@ -202,8 +176,6 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
         webTask.execute(servico);
 
         finish();
-
-
     }
 
     public String getDescription(){
@@ -213,9 +185,6 @@ public class AberturaServicoAcivity extends AppCompatActivity implements View.On
 
         return "";
     }
-
-
-
 }
 
 

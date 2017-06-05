@@ -7,10 +7,10 @@
     tools:context="projetopgm.com.br.projetopgm.abertura.AberturaServicoAcivity">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        android:id="@+id/appBarLayout">
+        android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -22,52 +22,37 @@
     </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
         android:id="@+id/linearLayout2"
-        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="21dp">
-
-
-            <fragment
-                android:name="projetopgm.com.br.projetopgm.abertura.AberturaInfoFrament"
-                tools:layout="@layout/fragment_abertura_detalhes"
-                android:id="@+id/framentAberturaInfo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="30dp"
-                android:layout_marginStart="10dp">
-            </fragment>
-
-        </LinearLayout>
-
-
-    <ScrollView
-        android:id="@+id/horizontalScrollView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:layout_below="@+id/appBarLayout"
-        android:layout_alignStart="@+id/linearLayout2"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="50dp">
+        android:orientation="horizontal">
 
+        <fragment
+            android:id="@+id/fragmentAberturaInfo"
+            android:name="projetopgm.com.br.projetopgm.abertura.AberturaInfoFrament"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="1"
+            tools:layout="@layout/fragment_abertura_detalhes">
+        </fragment>
 
+        <ScrollView
+            android:id="@+id/horizontalScrollView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
 
             <fragment
-                android:id="@+id/framentAberturaFotos"
+                android:id="@+id/fragmentAberturaFotos"
                 android:name="projetopgm.com.br.projetopgm.abertura.AberturaFotoFragment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:layout="@layout/fragment_abertura_fotos"
-                android:layout_marginStart="260dp">
-
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:layout="@layout/fragment_abertura_fotos">
             </fragment>
 
-    </ScrollView>
-
+        </ScrollView>
+    </LinearLayout>
 </RelativeLayout>
