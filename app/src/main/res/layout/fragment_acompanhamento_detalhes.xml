@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="19dp"
                 android:layout_marginTop="36dp"
-                android:text="Número"
+                android:text="@string/title_numero"
                 android:layout_alignParentTop="true" />
 
             <TextView
@@ -51,7 +51,7 @@
             android:id="@+id/precoServicoLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Valor"
+            android:text="@string/title_valor_avaliado"
             android:layout_alignBaseline="@+id/linearNumeroServico"
             android:layout_alignBottom="@+id/linearNumeroServico"
             android:layout_toEndOf="@+id/linearNumeroServico"
@@ -80,7 +80,7 @@
                 android:id="@+id/statusServicoLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Status"
+                android:text="@string/title_status"
                 android:layout_alignBaseline="@+id/linearNumeroServico"
                 android:layout_alignBottom="@+id/linearNumeroServico"
                 android:layout_toEndOf="@+id/linearNumeroServico"
@@ -109,7 +109,7 @@
                 android:id="@+id/dataAberturaServicoLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Data Abertura"
+                android:text="@string/title_data_abertura"
                 />
 
             <TextView
@@ -135,7 +135,7 @@
         android:ems="10"
         android:inputType="textMultiLine"
         android:layout_marginTop="28dp"
-        android:hint="Descrição do problema. Esse campo será desabilitado"
+        android:hint="Descrição do problema..."
         android:layout_below="@+id/scrollHorizontalAcompanhamento"
         android:layout_centerHorizontal="true" />
 

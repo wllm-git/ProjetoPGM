@@ -23,4 +23,5 @@
     <string name="status_cancelado">Cancelado</string>
     <string name="tipo_orcamento">Orçamento</string>
     <string name="tipo_os">OS</string>
+    <string name="title_status">Status</string>
 </resources>
