@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 
 import projetopgm.com.br.projetopgm.R;
 import projetopgm.com.br.projetopgm.base.Servico;
+import projetopgm.com.br.projetopgm.compartilhados.FuncoesGlobais;
 
 
 public class DetalhesInfoFragment extends Fragment {
@@ -41,7 +42,7 @@ public class DetalhesInfoFragment extends Fragment {
             textValor.setText(String.valueOf(servico.getPrecoFinal()));
 
             TextView textStatus = (TextView) fragmentDetalhes.findViewById(R.id.tvwStatus);
-            textStatus.setText(servico.getStatus().toString());
+            textStatus.setText(FuncoesGlobais.formatarStatus(getActivity(), servico.getStatus()));
 
             TextView precoAvaliado = (TextView) fragmentDetalhes.findViewById(R.id.tvwPrecoAvaliado);
             precoAvaliado.setText(String.valueOf(servico.getPrecoAvaliado()));

@@ -16,7 +16,10 @@
     <string name="title_valor_avaliado">Avaliação</string>
     <string name="menu_fechadas">Fechadas</string>
     <string name="menu_localizacao">Localização</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="status_aberto">Aberto</string>
+    <string name="status_adamento">Andamento</string>
+    <string name="status_fechado">Fechado</string>
+    <string name="status_cancelado">Cancelado</string>
+    <string name="tipo_orcamento">Orçamento</string>
+    <string name="tipo_os">OS</string>
 </resources>
