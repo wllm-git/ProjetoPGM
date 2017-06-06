@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="19dp"
                 android:layout_marginTop="36dp"
-                android:text="Número"
+                android:text="@string/title_numero"
                 android:layout_alignParentTop="true" />
 
             <TextView
