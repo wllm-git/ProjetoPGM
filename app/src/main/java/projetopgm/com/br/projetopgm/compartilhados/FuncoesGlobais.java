@@ -6,6 +6,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.DisplayMetrics;
 
+import projetopgm.com.br.projetopgm.R;
+import projetopgm.com.br.projetopgm.base.Servico;
+
 public class FuncoesGlobais {
     public static boolean isPortrait(Context context){
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
@@ -33,5 +36,43 @@ public class FuncoesGlobais {
             return BitmapFactory.decodeFile(pathFile, opt2);
         } catch (Exception e) {}
         return null;
+    }
+
+    public static String formatarStatus(Context context, Servico.Status status){
+        String statusStr;
+
+        switch (status){
+            case ABERTO:
+                statusStr = context.getString(R.string.status_aberto);
+                break;
+            case ANDAMENTO:
+                statusStr = context.getString(R.string.status_adamento);
+                break;
+            case FECHADO:
+                statusStr = context.getString(R.string.status_fechado);
+                break;
+            case CANCELADO:
+                statusStr = context.getString(R.string.status_cancelado);
+                break;
+            default:
+                statusStr = context.getString(R.string.status_aberto);
+        }
+        return statusStr;
+    }
+
+    public static String formatarTipo(Context context, Servico.Tipo tipo){
+        String tipoStr;
+        switch (tipo){
+            case ORCAMENTO:
+                tipoStr = context.getString(R.string.tipo_orcamento);;
+                break;
+            case OS:
+                tipoStr = context.getString(R.string.tipo_os);;
+                break;
+            default:
+                tipoStr = context.getString(R.string.tipo_orcamento);;
+        }
+
+        return tipoStr;
     }
 }

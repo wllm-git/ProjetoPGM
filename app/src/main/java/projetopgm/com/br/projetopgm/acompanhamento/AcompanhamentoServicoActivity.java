@@ -46,9 +46,9 @@ public class AcompanhamentoServicoActivity extends AppCompatActivity
 
         fragmentFotos = (AberturaFotoFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentAberturaFotos);
 
-        fragmentDetalhes.setTxtNumeroServico(servico.getNumero().substring(0,5));
+        fragmentDetalhes.setTxtNumeroServico(servico.getNumero());
         fragmentDetalhes.setTxtPrecoServico("R$ " + servico.getPrecoAvaliado().toString());
-        SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
         fragmentDetalhes.setTxtDataAberturaServico(DATE_FORMAT.format(servico.getDataAbertura()));
         fragmentDetalhes.setTxtStatusServico(servico.getStatus().toString());
         fragmentDetalhes.setDescricaoProblema(servico.getDescricao());
