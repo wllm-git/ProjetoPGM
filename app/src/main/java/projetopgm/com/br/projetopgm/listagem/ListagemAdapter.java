@@ -61,8 +61,8 @@ public class ListagemAdapter extends BaseAdapter {
         TextView dsc = (TextView) convertView.findViewById(R.id.tvwDesc);
         TextView dt = (TextView) convertView.findViewById(R.id.tvwData);
         TextView st = (TextView) convertView.findViewById(R.id.tvwStatusListagem);
-        if(s.getDescricao().length() >= 20)
-            dsc.setText(s.getDescricao().substring(0,19));
+        if(s.getDescricao().length() >= 25)
+            dsc.setText(s.getDescricao().substring(0,24));
         else
             dsc.setText(s.getDescricao());
 

@@ -17,11 +17,11 @@
     <string name="title_valor_avaliado">Estimate</string>
     <string name="menu_fechadas">Closed</string>
     <string name="menu_localizacao">Location</string>
-    <string name="status_aberto">Aberto</string>
-    <string name="status_adamento">Andamento</string>
-    <string name="status_fechado">Fechado</string>
-    <string name="status_cancelado">Cancelado</string>
-    <string name="tipo_orcamento">Orçamento</string>
+    <string name="status_aberto">Open</string>
+    <string name="status_adamento">Progress</string>
+    <string name="status_fechado">Closed</string>
+    <string name="status_cancelado">Canceled</string>
+    <string name="tipo_orcamento">Budget</string>
     <string name="tipo_os">OS</string>
     <string name="title_status">Status</string>
 </resources>
