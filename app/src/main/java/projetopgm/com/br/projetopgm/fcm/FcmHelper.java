@@ -78,7 +78,7 @@ public class FcmHelper extends FirebaseInstanceIdService {
                         Thread.sleep(2000);
 
                         String token = sharedPreferences.getString("tokenFCM", null);
-                        if(token != null || token.length() > 5 && LoginHelper.isLogado()){
+                        if(token != null && token.length() > 5 && LoginHelper.isLogado()){
                             sendRegistrationToServer(token);
                             SharedPreferences.Editor editor = sharedPreferences.edit();
                             editor.putBoolean("enviado", true);

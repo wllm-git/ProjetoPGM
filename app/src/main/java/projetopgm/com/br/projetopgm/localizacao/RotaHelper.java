@@ -31,7 +31,7 @@ public class RotaHelper {
 
             connection.setDoOutput(false);
 
-            //AIzaSyCoONX3Ws5_gdH5-yg4cz_5fxz1ZXvfz3I
+
             Scanner scanner = new Scanner(connection.getInputStream());
             StringBuffer jsonBuffer = new StringBuffer();
             while (scanner.hasNext())

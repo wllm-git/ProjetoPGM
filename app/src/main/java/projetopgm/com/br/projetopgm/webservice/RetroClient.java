@@ -39,6 +39,11 @@ public class RetroClient {
         i = 0;
         isUploading = false;
         do {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             if(isUploading)
                 continue;
 
@@ -67,11 +72,7 @@ public class RetroClient {
                     isUploading = false;
                 }
             });
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+
         } while (i < fotos.size());
 
     }
